@@ -75,6 +75,7 @@ namespace Catfish
 			this.настройкиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.шрифтToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.цветToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.цветФонаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -392,7 +393,8 @@ namespace Catfish
 			// 
 			this.настройкиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
 									this.шрифтToolStripMenuItem,
-									this.цветToolStripMenuItem});
+									this.цветToolStripMenuItem,
+									this.цветФонаToolStripMenuItem});
 			this.настройкиToolStripMenuItem.Name = "настройкиToolStripMenuItem";
 			this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
 			this.настройкиToolStripMenuItem.Text = "Настройки";
@@ -401,15 +403,21 @@ namespace Catfish
 			// 
 			this.шрифтToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("шрифтToolStripMenuItem.Image")));
 			this.шрифтToolStripMenuItem.Name = "шрифтToolStripMenuItem";
-			this.шрифтToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
+			this.шрифтToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
 			this.шрифтToolStripMenuItem.Text = "Шрифт";
 			// 
 			// цветToolStripMenuItem
 			// 
 			this.цветToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("цветToolStripMenuItem.Image")));
 			this.цветToolStripMenuItem.Name = "цветToolStripMenuItem";
-			this.цветToolStripMenuItem.Size = new System.Drawing.Size(113, 22);
-			this.цветToolStripMenuItem.Text = "Цвет";
+			this.цветToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+			this.цветToolStripMenuItem.Text = "Цвет текста";
+			// 
+			// цветФонаToolStripMenuItem
+			// 
+			this.цветФонаToolStripMenuItem.Name = "цветФонаToolStripMenuItem";
+			this.цветФонаToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+			this.цветФонаToolStripMenuItem.Text = "Цвет фона";
 			// 
 			// справкаToolStripMenuItem
 			// 
@@ -741,7 +749,7 @@ namespace Catfish
 			this.panel1.Controls.Add(this.textBox1);
 			this.panel1.Location = new System.Drawing.Point(99, 164);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(300, 125);
+			this.panel1.Size = new System.Drawing.Size(200, 125);
 			this.panel1.TabIndex = 4;
 			this.panel1.Visible = false;
 			// 
@@ -754,7 +762,7 @@ namespace Catfish
 			this.listBox1.ItemHeight = 16;
 			this.listBox1.Location = new System.Drawing.Point(0, 23);
 			this.listBox1.Name = "listBox1";
-			this.listBox1.Size = new System.Drawing.Size(300, 100);
+			this.listBox1.Size = new System.Drawing.Size(200, 100);
 			this.listBox1.TabIndex = 1;
 			this.listBox1.SelectedIndexChanged += new System.EventHandler(this.ListBox1SelectedIndexChanged);
 			this.listBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ListBox1KeyDown);
@@ -767,7 +775,7 @@ namespace Catfish
 			this.textBox1.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.textBox1.Location = new System.Drawing.Point(0, 0);
 			this.textBox1.Name = "textBox1";
-			this.textBox1.Size = new System.Drawing.Size(300, 22);
+			this.textBox1.Size = new System.Drawing.Size(200, 22);
 			this.textBox1.TabIndex = 0;
 			this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox1KeyDown);
 			this.textBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TextBox1KeyUp);
@@ -785,6 +793,7 @@ namespace Catfish
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MainMenuStrip = this.menuStrip1;
 			this.Name = "Editor";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 			this.Text = "Редактор";
 			this.Load += new System.EventHandler(this.EditorLoad);
 			this.menuStrip1.ResumeLayout(false);
@@ -798,6 +807,7 @@ namespace Catfish
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.ToolStripMenuItem цветФонаToolStripMenuItem;
 		private System.Windows.Forms.TextBox textBox1;
 		private System.Windows.Forms.ListBox listBox1;
 		private System.Windows.Forms.Panel panel1;

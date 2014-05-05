@@ -9,3 +9,14 @@ C:\Program Code\Git\Catfish\bin\Debug\Catfish.exe
 C:\Program Code\Git\Catfish\bin\Debug\Catfish.pdb
 C:\Program Code\Git\Catfish\obj\Debug\Catfish.exe
 C:\Program Code\Git\Catfish\obj\Debug\Catfish.pdb
+C:\GIT\Catfish\obj\Debug\Catfish.csprojResolveAssemblyReference.cache
+C:\GIT\Catfish\obj\Debug\Catfish.Element.resources
+C:\GIT\Catfish\obj\Debug\Catfish.Folder.resources
+C:\GIT\Catfish\obj\Debug\Catfish.MainForm.resources
+C:\GIT\Catfish\obj\Debug\Catfish.Editor.resources
+C:\GIT\Catfish\obj\Debug\Catfish.FTP.resources
+C:\GIT\Catfish\obj\Debug\Catfish.csproj.GenerateResource.Cache
+C:\GIT\Catfish\obj\Debug\Catfish.exe
+C:\GIT\Catfish\bin\Debug\Catfish.exe
+C:\GIT\Catfish\bin\Debug\Catfish.pdb
+C:\GIT\Catfish\obj\Debug\Catfish.pdb

@@ -88,28 +88,36 @@ namespace Catfish
 				int _smallWinW = richTextBox1.GetPositionFromCharIndex(richTextBox1.SelectionStart).X + panel1.Width;
 				if(_windowH < _smallWinH){
 					if(_windowW < _smallWinW){ // Право - низ
+						textBox1.Left = 0; textBox1.Top = 101;
+						listBox1.Left = 0; listBox1.Top = 0;
 						panel1.Left = richTextBox1.GetPositionFromCharIndex(richTextBox1.SelectionStart).X - 200;
-						panel1.Top = richTextBox1.GetPositionFromCharIndex(richTextBox1.SelectionStart).Y;
+						panel1.Top = richTextBox1.GetPositionFromCharIndex(richTextBox1.SelectionStart).Y - 50;
 						textBox1.RightToLeft = RightToLeft.Yes;
 						panel1.Visible = true;
 						textBox1.Focus();
 					}else{ // Лево - Низ
+						textBox1.Left = 0; textBox1.Top = 101;
+						listBox1.Left = 0; listBox1.Top = 0;
 						panel1.Left = richTextBox1.GetPositionFromCharIndex(richTextBox1.SelectionStart).X;
-						panel1.Top = richTextBox1.GetPositionFromCharIndex(richTextBox1.SelectionStart).Y;
+						panel1.Top = richTextBox1.GetPositionFromCharIndex(richTextBox1.SelectionStart).Y - 50;
 						textBox1.RightToLeft = RightToLeft.No;
 						panel1.Visible = true;
 						textBox1.Focus();
 					}
 				}else{
 					if(_windowW < _smallWinW){ // Право - Вверх
+						textBox1.Left = 0; textBox1.Top = 0;
+						listBox1.Left = 0; listBox1.Top = 23;
 						panel1.Left = richTextBox1.GetPositionFromCharIndex(richTextBox1.SelectionStart).X - 200;
-						panel1.Top = richTextBox1.GetPositionFromCharIndex(richTextBox1.SelectionStart).Y + 80;
+						panel1.Top = richTextBox1.GetPositionFromCharIndex(richTextBox1.SelectionStart).Y + 50;
 						textBox1.RightToLeft = RightToLeft.Yes;
 						panel1.Visible = true;
 						textBox1.Focus();
 					}else{ // Лево - Вверх
+						textBox1.Left = 0; textBox1.Top = 0;
+						listBox1.Left = 0; listBox1.Top = 23;
 						panel1.Left = richTextBox1.GetPositionFromCharIndex(richTextBox1.SelectionStart).X;
-						panel1.Top = richTextBox1.GetPositionFromCharIndex(richTextBox1.SelectionStart).Y + 80;
+						panel1.Top = richTextBox1.GetPositionFromCharIndex(richTextBox1.SelectionStart).Y + 50;
 						textBox1.RightToLeft = RightToLeft.No;
 						panel1.Visible = true;
 						textBox1.Focus();
@@ -187,6 +195,24 @@ namespace Catfish
 				
 				_countChar = textBox1.TextLength;
 				for(int i = 0; i < listBox1.Items.Count; i++){
+					_find = listBox1.Items[i].ToString();
+					if(_find.Length >= _countChar){
+						for(int j = 0; j < _countChar; j++)
+							_inputOperator = _inputOperator + _find[j];
+					}
+					
+					this.Update();
+					panel1.Update();
+					listBox1.Update();
+					if(textBox1.Text == _inputOperator){
+						listBox1.SelectedIndex = i;
+						this.Update();
+						panel1.Update();
+						listBox1.Update();
+						break;
+					}else{
+						_inputOperator = "";
+					}
 					
 				}
 			}
