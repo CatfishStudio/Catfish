@@ -128,12 +128,68 @@ namespace Catfish
 		/* Производим поиск и выбор нужного оператора */		
 		void TextBox1KeyDown(object sender, KeyEventArgs e)
 		{
-			
+			try{
+				/* Закрытие окна операторов */
+				if(e.KeyData == Keys.Escape){
+					panel1.Visible = false;
+					textBox1.Clear();
+					listBox1.SelectedIndex = 0;
+					richTextBox1.SelectionStart = richTextBox1.SelectionStart - 1;
+					richTextBox1.SelectionLength = 1;
+					richTextBox1.Focus();
+				}
+				/* передача фокуса листу операторов */
+				if(e.KeyData == Keys.Down || e.KeyData == Keys.Up || e.KeyData == Keys.PageUp || e.KeyData == Keys.PageDown){
+					listBox1.Focus();
+				}
+				/* выбор оператора */
+				if(e.KeyData == Keys.Enter){
+					if(listBox1.SelectedIndex < 0){
+						richTextBox1.SelectionStart = richTextBox1.SelectionStart - 1;
+						richTextBox1.SelectionLength = 1;
+						/* Вставляем выбранный оператор */
+						Clipboard.SetDataObject(textBox1.Text);
+						richTextBox1.Paste();
+						/* Закрываем */
+						panel1.Visible = false;
+						listBox1.SelectedIndex = 0;
+						textBox1.Clear();
+						richTextBox1.Focus();
+					}else{
+						richTextBox1.SelectionStart = richTextBox1.SelectionStart - 1;
+						richTextBox1.SelectionLength = 1;
+						/* Вставляем выбранный оператор */
+						Clipboard.SetDataObject(listBox1.Items[listBox1.SelectedIndex].ToString());
+						richTextBox1.Paste();
+						/* Закрываем */
+						panel1.Visible = false;
+						listBox1.SelectedIndex = 0;
+						textBox1.Clear();
+						richTextBox1.Focus();
+					}
+				}
+			}catch{
+				richTextBox1.SelectionStart = richTextBox1.SelectionStart - 1;
+				richTextBox1.SelectionLength = 1;
+				panel1.Visible = false;
+				listBox1.SelectedIndex = 0;
+				textBox1.Clear();
+				richTextBox1.Focus();		
+			}
 		}
 		
 		void TextBox1KeyUp(object sender, KeyEventArgs e)
 		{
-			
+			if(e.KeyCode.ToString() != "16"  && e.KeyCode.ToString() != "17"){
+				String _find = "";
+				int _countChar = 0;
+				String _inputOperator = "";
+				
+				_countChar = textBox1.TextLength;
+				for(int i = 0; i < listBox1.Items.Count; i++){
+					
+				}
+			}
 		}
 				
 		void ListBox1SelectedIndexChanged(object sender, EventArgs e)
