@@ -257,9 +257,51 @@ namespace Catfish
 		}
 		/*---------------------------------------------*/
 		
-		/* Открыть файл */
+		/* Открыть файл -------------------------------*/
 		void ОткрытьФайлToolStripMenuItemClick(object sender, EventArgs e)
 		{
+			if(openFileDialog1.ShowDialog() == DialogResult.OK){
+				
+				
+				BinaryReader instr = new BinaryReader(File.OpenRead(openFileDialog1.FileName));
+				byte[] data = instr.ReadBytes((int)instr.BaseStream.Length);
+				instr.Close();
+				
+				// определяем UTF-8 с BOM (EF BB BF)
+				if(data.Length > 2 && data[0] == 0xef && data[1] == 0xbb && data[2] == 0xbf){
+					StreamReader sr = new StreamReader(openFileDialog1.FileName, System.Text.Encoding.UTF8);
+					richTextBox1.Clear();
+					richTextBox1.LoadFile(sr.BaseStream, RichTextBoxStreamType.PlainText);
+					sr.Close();
+					this.Text = openFileDialog1.FileName;
+					toolStripStatusLabel1.Text = "Кодировка: UTF-8";
+				}else{
+					// определяем ASCII или UTF-8 без BOM
+					bool typeUTF8Wb = true;
+					
+					
+					if(typeUTF8Wb == false){ // определено как ASCII
+						StreamReader sr = new StreamReader(openFileDialog1.FileName, System.Text.Encoding.ASCII);
+						richTextBox1.Clear();
+						richTextBox1.LoadFile(sr.BaseStream, RichTextBoxStreamType.PlainText);
+						sr.Close();
+						this.Text = openFileDialog1.FileName;
+						toolStripStatusLabel1.Text = "Кодировка: ASCII";
+					}else{ // определено как UTF-8 без BOM
+						UTF8Encoding utf8wb = new UTF8Encoding(false);
+						StreamReader sr = new StreamReader(openFileDialog1.FileName, utf8wb);
+						richTextBox1.Clear();
+						while (sr.Peek() > -1)
+							richTextBox1.Text += sr.ReadLine().ToString() + System.Environment.NewLine;
+							
+						sr.Close();
+						this.Text = openFileDialog1.FileName;
+						toolStripStatusLabel1.Text = "Кодировка: UTF-8 without BOM";
+					}
+				}
+				
+			}
+			
 			
 		}
 		
@@ -281,7 +323,7 @@ namespace Catfish
 			
 		}
 		
-		/* Сохранить файл */
+		/* Сохранить файл ------------------------------*/
 		void СохранитьФайлToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			if(toolStripStatusLabel1.Text == "Кодировка: ASCII") fileSaveASCII(false);
@@ -292,9 +334,11 @@ namespace Catfish
 		/* Сохранить файл ASCII */
 		void fileSaveASCII(bool _saveAs)
 		{
-			if(_saveAs){
+			if(_saveAs == true || this.Text == "Редактор"){
 				if(saveFileDialog1.ShowDialog() == DialogResult.OK){
 					richTextBox1.SaveFile(saveFileDialog1.FileName, RichTextBoxStreamType.PlainText);
+					this.Text = saveFileDialog1.FileName;
+					toolStripStatusLabel1.Text = "Кодировка: ASCII";
 					MessageBox.Show("Файл успешно сохранён!");
 				}
 			}else{
@@ -306,29 +350,59 @@ namespace Catfish
 		
 		void ASCIIToolStripMenuItem1Click(object sender, EventArgs e)
 		{
-			fileSaveASCII(true);
+			fileSaveASCII(true); // сохраняем файл как ASCII
 		}
 		
 		/* Сохранить файл UTF-8 */
 		void fileSaveUTF8(bool _saveAs)
 		{
-			
+			if(_saveAs == true || this.Text == "Редактор"){
+				if(saveFileDialog1.ShowDialog() == DialogResult.OK){
+					StreamWriter sw = new StreamWriter(saveFileDialog1.FileName, false, Encoding.UTF8);
+					sw.Write(richTextBox1.Text);
+					sw.Close();
+					this.Text = saveFileDialog1.FileName;
+					toolStripStatusLabel1.Text = "Кодировка: UTF-8";
+					MessageBox.Show("Файл успешно сохранён!");
+				}
+			}else{
+				StreamWriter sw = new StreamWriter(this.Text, false, Encoding.UTF8);
+				sw.Write(richTextBox1.Text);
+				sw.Close();
+				MessageBox.Show("Файл успешно сохранён!");
+			}
 		}
 		
 		void UTF8ToolStripMenuItem1Click(object sender, EventArgs e)
 		{
-			
+			fileSaveUTF8(true); // сохраняем файл как UTF-8
 		}
 		
 		/* Сохранить файл UTF-8 without BOM*/
 		void fileSaveUTF8wBOM(bool _saveAs)
 		{
-			
+			if(_saveAs == true || this.Text == "Редактор"){
+				if(saveFileDialog1.ShowDialog() == DialogResult.OK){
+					UTF8Encoding utf8wb = new UTF8Encoding(false);
+					StreamWriter sw = new StreamWriter(saveFileDialog1.FileName, false, utf8wb);
+					sw.Write(richTextBox1.Text);
+					sw.Close();
+					this.Text = saveFileDialog1.FileName;
+					toolStripStatusLabel1.Text = "Кодировка: UTF-8 without BOM";
+					MessageBox.Show("Файл успешно сохранён!");
+				}
+			}else{
+				UTF8Encoding utf8wb = new UTF8Encoding(false);
+				StreamWriter sw = new StreamWriter(saveFileDialog1.FileName, false, utf8wb);
+				sw.Write(richTextBox1.Text);
+				sw.Close();
+				MessageBox.Show("Файл успешно сохранён!");
+			}
 		}
 		
 		void UTF8WithoutBOMToolStripMenuItem1Click(object sender, EventArgs e)
 		{
-			
+			fileSaveUTF8wBOM(true); // сохраняем файл как UTF-8 without BOM
 		}
 	}
 }
