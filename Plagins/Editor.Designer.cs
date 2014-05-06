@@ -131,6 +131,8 @@ namespace Catfish
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.listBox1 = new System.Windows.Forms.ListBox();
 			this.textBox1 = new System.Windows.Forms.TextBox();
+			this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
 			this.menuStrip1.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
@@ -171,6 +173,7 @@ namespace Catfish
 			this.открытьФайлToolStripMenuItem.Name = "открытьФайлToolStripMenuItem";
 			this.открытьФайлToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
 			this.открытьФайлToolStripMenuItem.Text = "Открыть файл.";
+			this.открытьФайлToolStripMenuItem.Click += new System.EventHandler(this.ОткрытьФайлToolStripMenuItemClick);
 			// 
 			// открытьФайлКакToolStripMenuItem
 			// 
@@ -188,18 +191,21 @@ namespace Catfish
 			this.aSCIIToolStripMenuItem.Name = "aSCIIToolStripMenuItem";
 			this.aSCIIToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
 			this.aSCIIToolStripMenuItem.Text = "ASCII";
+			this.aSCIIToolStripMenuItem.Click += new System.EventHandler(this.ASCIIToolStripMenuItemClick);
 			// 
 			// uTF8ToolStripMenuItem
 			// 
 			this.uTF8ToolStripMenuItem.Name = "uTF8ToolStripMenuItem";
 			this.uTF8ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
 			this.uTF8ToolStripMenuItem.Text = "UTF-8";
+			this.uTF8ToolStripMenuItem.Click += new System.EventHandler(this.UTF8ToolStripMenuItemClick);
 			// 
 			// uTF8WithoutBOMToolStripMenuItem
 			// 
 			this.uTF8WithoutBOMToolStripMenuItem.Name = "uTF8WithoutBOMToolStripMenuItem";
 			this.uTF8WithoutBOMToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
 			this.uTF8WithoutBOMToolStripMenuItem.Text = "UTF-8 without BOM";
+			this.uTF8WithoutBOMToolStripMenuItem.Click += new System.EventHandler(this.UTF8WithoutBOMToolStripMenuItemClick);
 			// 
 			// сохранитьФайлToolStripMenuItem
 			// 
@@ -207,6 +213,7 @@ namespace Catfish
 			this.сохранитьФайлToolStripMenuItem.Name = "сохранитьФайлToolStripMenuItem";
 			this.сохранитьФайлToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
 			this.сохранитьФайлToolStripMenuItem.Text = "Сохранить файл.";
+			this.сохранитьФайлToolStripMenuItem.Click += new System.EventHandler(this.СохранитьФайлToolStripMenuItemClick);
 			// 
 			// сохранитьФайлКакToolStripMenuItem
 			// 
@@ -224,18 +231,21 @@ namespace Catfish
 			this.aSCIIToolStripMenuItem1.Name = "aSCIIToolStripMenuItem1";
 			this.aSCIIToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
 			this.aSCIIToolStripMenuItem1.Text = "ASCII";
+			this.aSCIIToolStripMenuItem1.Click += new System.EventHandler(this.ASCIIToolStripMenuItem1Click);
 			// 
 			// uTF8ToolStripMenuItem1
 			// 
 			this.uTF8ToolStripMenuItem1.Name = "uTF8ToolStripMenuItem1";
 			this.uTF8ToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
 			this.uTF8ToolStripMenuItem1.Text = "UTF-8";
+			this.uTF8ToolStripMenuItem1.Click += new System.EventHandler(this.UTF8ToolStripMenuItem1Click);
 			// 
 			// uTF8WithoutBOMToolStripMenuItem1
 			// 
 			this.uTF8WithoutBOMToolStripMenuItem1.Name = "uTF8WithoutBOMToolStripMenuItem1";
 			this.uTF8WithoutBOMToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
 			this.uTF8WithoutBOMToolStripMenuItem1.Text = "UTF-8 without BOM";
+			this.uTF8WithoutBOMToolStripMenuItem1.Click += new System.EventHandler(this.UTF8WithoutBOMToolStripMenuItem1Click);
 			// 
 			// toolStripSeparator1
 			// 
@@ -913,6 +923,14 @@ namespace Catfish
 			this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox1KeyDown);
 			this.textBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TextBox1KeyUp);
 			// 
+			// saveFileDialog1
+			// 
+			this.saveFileDialog1.Filter = "*.*|*.*|*.html|*.html";
+			// 
+			// openFileDialog1
+			// 
+			this.openFileDialog1.Filter = "*.*|*.*|*.html|*.html";
+			// 
 			// Editor
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -940,6 +958,8 @@ namespace Catfish
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.OpenFileDialog openFileDialog1;
+		private System.Windows.Forms.SaveFileDialog saveFileDialog1;
 		private System.Windows.Forms.ToolStripMenuItem uTF8WithoutBOMToolStripMenuItem3;
 		private System.Windows.Forms.ToolStripMenuItem uTF8ToolStripMenuItem3;
 		private System.Windows.Forms.ToolStripMenuItem aSCIIToolStripMenuItem3;

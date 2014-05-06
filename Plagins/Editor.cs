@@ -225,7 +225,7 @@ namespace Catfish
 				}
 			}
 		}
-				
+		
 		void ListBox1SelectedIndexChanged(object sender, EventArgs e)
 		{
 			if(_listFocus){
@@ -251,11 +251,84 @@ namespace Catfish
 				listBox1.SelectedIndex = 0;
 				textBox1.Clear();
 				toolStripStatusLabel3.Text = "...";
+				_listFocus = false;
 				richTextBox1.Focus();
 			}
 		}
 		/*---------------------------------------------*/
 		
+		/* Открыть файл */
+		void ОткрытьФайлToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			
+		}
 		
+		/* Открыть файл ASCII */
+		void ASCIIToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			
+		}
+		
+		/* Открыть файл UTF-8 */
+		void UTF8ToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			
+		}
+		
+		/* Открыть файл UTF-8 without BOM*/
+		void UTF8WithoutBOMToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			
+		}
+		
+		/* Сохранить файл */
+		void СохранитьФайлToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			if(toolStripStatusLabel1.Text == "Кодировка: ASCII") fileSaveASCII(false);
+			if(toolStripStatusLabel1.Text == "Кодировка: UTF-8") fileSaveUTF8(false);
+			if(toolStripStatusLabel1.Text == "Кодировка: UTF-8 without BOM") fileSaveUTF8wBOM(false);
+		}
+		
+		/* Сохранить файл ASCII */
+		void fileSaveASCII(bool _saveAs)
+		{
+			if(_saveAs){
+				if(saveFileDialog1.ShowDialog() == DialogResult.OK){
+					richTextBox1.SaveFile(saveFileDialog1.FileName, RichTextBoxStreamType.PlainText);
+					MessageBox.Show("Файл успешно сохранён!");
+				}
+			}else{
+				richTextBox1.SaveFile(this.Text, RichTextBoxStreamType.PlainText);
+				MessageBox.Show("Файл успешно сохранён!");
+			}
+			
+		}
+		
+		void ASCIIToolStripMenuItem1Click(object sender, EventArgs e)
+		{
+			fileSaveASCII(true);
+		}
+		
+		/* Сохранить файл UTF-8 */
+		void fileSaveUTF8(bool _saveAs)
+		{
+			
+		}
+		
+		void UTF8ToolStripMenuItem1Click(object sender, EventArgs e)
+		{
+			
+		}
+		
+		/* Сохранить файл UTF-8 without BOM*/
+		void fileSaveUTF8wBOM(bool _saveAs)
+		{
+			
+		}
+		
+		void UTF8WithoutBOMToolStripMenuItem1Click(object sender, EventArgs e)
+		{
+			
+		}
 	}
 }
