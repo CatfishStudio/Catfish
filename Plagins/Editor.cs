@@ -31,6 +31,8 @@ namespace Catfish
 			//
 		}
 		
+		private bool _listFocus = false;
+		
 		/* Загрузка списка операторов */
 		private void loadOperators()
 		{
@@ -129,7 +131,9 @@ namespace Catfish
 				panel1.Visible = false;
 				listBox1.SelectedIndex = 0;
 				textBox1.Clear();
+				toolStripStatusLabel3.Text = "...";
 				richTextBox1.Focus();
+				_listFocus = true;
 			}
 		}
 		
@@ -141,14 +145,17 @@ namespace Catfish
 				if(e.KeyData == Keys.Escape){
 					panel1.Visible = false;
 					textBox1.Clear();
+					toolStripStatusLabel3.Text = "...";
 					listBox1.SelectedIndex = 0;
 					richTextBox1.SelectionStart = richTextBox1.SelectionStart - 1;
 					richTextBox1.SelectionLength = 1;
 					richTextBox1.Focus();
+					_listFocus = true;
 				}
 				/* передача фокуса листу операторов */
 				if(e.KeyData == Keys.Down || e.KeyData == Keys.Up || e.KeyData == Keys.PageUp || e.KeyData == Keys.PageDown){
 					listBox1.Focus();
+					_listFocus = true;
 				}
 				/* выбор оператора */
 				if(e.KeyData == Keys.Enter){
@@ -162,7 +169,9 @@ namespace Catfish
 						panel1.Visible = false;
 						listBox1.SelectedIndex = 0;
 						textBox1.Clear();
+						toolStripStatusLabel3.Text = "...";
 						richTextBox1.Focus();
+						_listFocus = false;
 					}else{
 						richTextBox1.SelectionStart = richTextBox1.SelectionStart - 1;
 						richTextBox1.SelectionLength = 1;
@@ -173,7 +182,10 @@ namespace Catfish
 						panel1.Visible = false;
 						listBox1.SelectedIndex = 0;
 						textBox1.Clear();
+						toolStripStatusLabel3.Text = "...";
 						richTextBox1.Focus();
+						_listFocus = false;
+						
 					}
 				}
 			}catch{
@@ -182,6 +194,8 @@ namespace Catfish
 				panel1.Visible = false;
 				listBox1.SelectedIndex = 0;
 				textBox1.Clear();
+				toolStripStatusLabel3.Text = "...";
+				_listFocus = false;
 				richTextBox1.Focus();		
 			}
 		}
@@ -192,6 +206,8 @@ namespace Catfish
 				String _find = "";
 				int _countChar = 0;
 				String _inputOperator = "";
+				
+				toolStripStatusLabel3.Text = textBox1.Text;
 				
 				_countChar = textBox1.TextLength;
 				for(int i = 0; i < listBox1.Items.Count; i++){
@@ -220,12 +236,32 @@ namespace Catfish
 				
 		void ListBox1SelectedIndexChanged(object sender, EventArgs e)
 		{
-			
+			if(_listFocus){
+				textBox1.Text = listBox1.Items[listBox1.SelectedIndex].ToString();
+				toolStripStatusLabel3.Text = listBox1.Items[listBox1.SelectedIndex].ToString();
+			}
 		}
 		
 		void ListBox1KeyDown(object sender, KeyEventArgs e)
 		{
-			
+			if(e.KeyData == Keys.Escape){
+				_listFocus = false;
+				textBox1.Focus();
+			}
+			if(e.KeyData == Keys.Enter){
+				richTextBox1.SelectionStart = richTextBox1.SelectionStart - 1;
+				richTextBox1.SelectionLength = 1;
+				/* Вставляем выбранный оператор */
+				Clipboard.SetDataObject(listBox1.Items[listBox1.SelectedIndex].ToString());
+				richTextBox1.Paste();
+				/* Закрываем */
+				panel1.Visible = false;
+				listBox1.SelectedIndex = 0;
+				textBox1.Clear();
+				toolStripStatusLabel3.Text = "...";
+				richTextBox1.Focus();
+				_listFocus = false;
+			}
 		}
 		/*---------------------------------------------*/
 		
