@@ -45,9 +45,6 @@ namespace Catfish
 					listBox1.Items.Add(str);
                 }
 			}
-			
-			
-			
 		}
 		
 		/* Загрузка редактора */
@@ -150,12 +147,11 @@ namespace Catfish
 					richTextBox1.SelectionStart = richTextBox1.SelectionStart - 1;
 					richTextBox1.SelectionLength = 1;
 					richTextBox1.Focus();
-					_listFocus = true;
 				}
 				/* передача фокуса листу операторов */
 				if(e.KeyData == Keys.Down || e.KeyData == Keys.Up || e.KeyData == Keys.PageUp || e.KeyData == Keys.PageDown){
-					listBox1.Focus();
 					_listFocus = true;
+					listBox1.Focus();
 				}
 				/* выбор оператора */
 				if(e.KeyData == Keys.Enter){
@@ -171,7 +167,6 @@ namespace Catfish
 						textBox1.Clear();
 						toolStripStatusLabel3.Text = "...";
 						richTextBox1.Focus();
-						_listFocus = false;
 					}else{
 						richTextBox1.SelectionStart = richTextBox1.SelectionStart - 1;
 						richTextBox1.SelectionLength = 1;
@@ -184,8 +179,6 @@ namespace Catfish
 						textBox1.Clear();
 						toolStripStatusLabel3.Text = "...";
 						richTextBox1.Focus();
-						_listFocus = false;
-						
 					}
 				}
 			}catch{
@@ -195,7 +188,6 @@ namespace Catfish
 				listBox1.SelectedIndex = 0;
 				textBox1.Clear();
 				toolStripStatusLabel3.Text = "...";
-				_listFocus = false;
 				richTextBox1.Focus();		
 			}
 		}
@@ -260,7 +252,6 @@ namespace Catfish
 				textBox1.Clear();
 				toolStripStatusLabel3.Text = "...";
 				richTextBox1.Focus();
-				_listFocus = false;
 			}
 		}
 		/*---------------------------------------------*/
