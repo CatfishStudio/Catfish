@@ -17,6 +17,6 @@ namespace Catfish
 	{
 		public static String MyProgramDirectory = "";
 		public static String PathBase = "";
-		public static String DenwerPath = "C:\\WebServers1\\denwer\\";
+		public static String DenwerPath = "C:\\WebServers";
 	}
 }

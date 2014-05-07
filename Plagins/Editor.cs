@@ -734,23 +734,129 @@ namespace Catfish
 		}
 		
 		/*DENWER --------------------------------------------------------*/
-		void denwerStart(){
-			String startFile = Config.DenwerPath + "Run.exe";
-			if(File.Exists(startFile)){
-				
+		void denwerRun(){
+			String denwerFile = Config.DenwerPath + "\\denwer\\Run.exe";
+			if(File.Exists(denwerFile)){
+				System.Diagnostics.Process.Start(denwerFile);
 			}else{
-				folderBrowserDialog1.Description = "Выберите папку где расположен Denwer.";
+				folderBrowserDialog1.Description = "Выберите папку где расположен Denwer." + System.Environment.NewLine + "по умолчаниэ это C:\\WebServers";
 				if(folderBrowserDialog1.ShowDialog() == DialogResult.OK){
 					Config.DenwerPath = folderBrowserDialog1.SelectedPath;
-					MessageBox.Show(Config.DenwerPath);
+					denwerFile = Config.DenwerPath + "\\denwer\\Run.exe";
+					System.Diagnostics.Process.Start(denwerFile);
+				}
+			}
+		}
+		
+		void denwerRestart(){
+			String denwerFile = Config.DenwerPath + "\\denwer\\Restart.exe";
+			if(File.Exists(denwerFile)){
+				System.Diagnostics.Process.Start(denwerFile);
+			}else{
+				folderBrowserDialog1.Description = "Выберите папку где расположен Denwer." + System.Environment.NewLine + "по умолчаниэ это C:\\WebServers";
+				if(folderBrowserDialog1.ShowDialog() == DialogResult.OK){
+					Config.DenwerPath = folderBrowserDialog1.SelectedPath;
+					denwerFile = Config.DenwerPath + "\\denwer\\Restart.exe";
+					System.Diagnostics.Process.Start(denwerFile);
 				}
 			}
 		}
 			
+		void denwerStop(){
+			String denwerFile = Config.DenwerPath + "\\denwer\\Stop.exe";
+			if(File.Exists(denwerFile)){
+				System.Diagnostics.Process.Start(denwerFile);
+			}else{
+				folderBrowserDialog1.Description = "Выберите папку где расположен Denwer." + System.Environment.NewLine + "по умолчаниэ это C:\\WebServers";
+				if(folderBrowserDialog1.ShowDialog() == DialogResult.OK){
+					Config.DenwerPath = folderBrowserDialog1.SelectedPath;
+					denwerFile = Config.DenwerPath + "\\denwer\\Stop.exe";
+					System.Diagnostics.Process.Start(denwerFile);
+				}
+			}
+		}
+		
+		void denwerPhpMyAdmin(){
+			try{
+				System.Diagnostics.Process.Start("http://localhost/Tools/phpMyAdmin/");	
+			}catch{
+				MessageBox.Show("Ошибка обращения к phpMyAdmin!");
+			}
+		}
+		
+		void denwerLocalhost(){
+			try{
+				System.Diagnostics.Process.Start("http://localhost/");	
+			}catch{
+				MessageBox.Show("Ошибка обращения к локальному серверу (localhost)");
+			}
+		}
 		
 		void DenwerСтартToolStripMenuItemClick(object sender, EventArgs e)
 		{
-			denwerStart();
+			denwerRun();
+		}
+		
+		void DenwerResetToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			denwerRestart();
+		}
+		
+		void DenwerStopToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			denwerStop();
+		}
+		
+		void DenwerPhpMyAdminToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			denwerPhpMyAdmin();
+		}
+		
+		void HttplocalhostToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			denwerLocalhost();
+		}
+		
+		void ToolStripButton9Click(object sender, EventArgs e)
+		{
+			denwerRun();
+		}
+		
+		void ToolStripButton10Click(object sender, EventArgs e)
+		{
+			denwerRestart();
+		}
+		
+		void ToolStripButton11Click(object sender, EventArgs e)
+		{
+			denwerStop();
+		}
+		
+		void ToolStripButton12Click(object sender, EventArgs e)
+		{
+			denwerPhpMyAdmin();
+		}
+		
+		/* Код цвета */
+		void codeColor()
+		{
+			if(colorDialog1.ShowDialog() == DialogResult.OK){
+				Color clr = colorDialog1.Color;
+				String HexColor;
+				HexColor = String.Format("#{0:X2}{1:X2}{2:X2}", clr.R, clr.G, clr.B);
+				Clipboard.SetDataObject(HexColor);
+				richTextBox1.Paste();
+			}
+		}
+		
+		void КодЦветаToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			codeColor();
+		}
+		
+		void ToolStripButton13Click(object sender, EventArgs e)
+		{
+			codeColor();
 		}
 	}
 }
