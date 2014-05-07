@@ -36,6 +36,7 @@ namespace Catfish
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Editor));
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -127,14 +128,27 @@ namespace Catfish
 			this.uTF8WithoutBOMToolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripButton19 = new System.Windows.Forms.ToolStripButton();
 			this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+			this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+			this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
+			this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem5 = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripMenuItem6 = new System.Windows.Forms.ToolStripMenuItem();
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.listBox1 = new System.Windows.Forms.ListBox();
 			this.textBox1 = new System.Windows.Forms.TextBox();
 			this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
 			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+			this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
+			this.преобразоватьВASCIIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.преобразоватьВUTF8ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.преобразоватьВUTF8WithoutBOMToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.statusStrip1.SuspendLayout();
 			this.toolStrip1.SuspendLayout();
+			this.contextMenuStrip1.SuspendLayout();
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -150,7 +164,7 @@ namespace Catfish
 									this.справкаToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(730, 24);
+			this.menuStrip1.Size = new System.Drawing.Size(699, 24);
 			this.menuStrip1.TabIndex = 0;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
@@ -279,6 +293,7 @@ namespace Catfish
 			this.отменитьToolStripMenuItem.Name = "отменитьToolStripMenuItem";
 			this.отменитьToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
 			this.отменитьToolStripMenuItem.Text = "Отменить.";
+			this.отменитьToolStripMenuItem.Click += new System.EventHandler(this.ОтменитьToolStripMenuItemClick);
 			// 
 			// повторитьToolStripMenuItem
 			// 
@@ -286,6 +301,7 @@ namespace Catfish
 			this.повторитьToolStripMenuItem.Name = "повторитьToolStripMenuItem";
 			this.повторитьToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
 			this.повторитьToolStripMenuItem.Text = "Повторить.";
+			this.повторитьToolStripMenuItem.Click += new System.EventHandler(this.ПовторитьToolStripMenuItemClick);
 			// 
 			// toolStripSeparator3
 			// 
@@ -298,6 +314,7 @@ namespace Catfish
 			this.вырезатьToolStripMenuItem.Name = "вырезатьToolStripMenuItem";
 			this.вырезатьToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
 			this.вырезатьToolStripMenuItem.Text = "Вырезать.";
+			this.вырезатьToolStripMenuItem.Click += new System.EventHandler(this.ВырезатьToolStripMenuItemClick);
 			// 
 			// копироватьToolStripMenuItem
 			// 
@@ -305,6 +322,7 @@ namespace Catfish
 			this.копироватьToolStripMenuItem.Name = "копироватьToolStripMenuItem";
 			this.копироватьToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
 			this.копироватьToolStripMenuItem.Text = "Копировать.";
+			this.копироватьToolStripMenuItem.Click += new System.EventHandler(this.КопироватьToolStripMenuItemClick);
 			// 
 			// вставитьToolStripMenuItem
 			// 
@@ -312,12 +330,14 @@ namespace Catfish
 			this.вставитьToolStripMenuItem.Name = "вставитьToolStripMenuItem";
 			this.вставитьToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
 			this.вставитьToolStripMenuItem.Text = "Вставить.";
+			this.вставитьToolStripMenuItem.Click += new System.EventHandler(this.ВставитьToolStripMenuItemClick);
 			// 
 			// удалитьToolStripMenuItem
 			// 
 			this.удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
 			this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
 			this.удалитьToolStripMenuItem.Text = "Удалить.";
+			this.удалитьToolStripMenuItem.Click += new System.EventHandler(this.УдалитьToolStripMenuItemClick);
 			// 
 			// видToolStripMenuItem
 			// 
@@ -334,13 +354,18 @@ namespace Catfish
 			this.панельИнструментовToolStripMenuItem.Name = "панельИнструментовToolStripMenuItem";
 			this.панельИнструментовToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
 			this.панельИнструментовToolStripMenuItem.Text = "Панель инструментов";
+			this.панельИнструментовToolStripMenuItem.Click += new System.EventHandler(this.ПанельИнструментовToolStripMenuItemClick);
 			// 
 			// кодировкаДокументаToolStripMenuItem
 			// 
 			this.кодировкаДокументаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
 									this.aSCIIToolStripMenuItem2,
 									this.uTF8ToolStripMenuItem2,
-									this.uTF8WithoutBOMToolStripMenuItem2});
+									this.uTF8WithoutBOMToolStripMenuItem2,
+									this.toolStripSeparator15,
+									this.преобразоватьВASCIIToolStripMenuItem,
+									this.преобразоватьВUTF8ToolStripMenuItem,
+									this.преобразоватьВUTF8WithoutBOMToolStripMenuItem});
 			this.кодировкаДокументаToolStripMenuItem.Name = "кодировкаДокументаToolStripMenuItem";
 			this.кодировкаДокументаToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
 			this.кодировкаДокументаToolStripMenuItem.Text = "Кодировки";
@@ -348,22 +373,25 @@ namespace Catfish
 			// aSCIIToolStripMenuItem2
 			// 
 			this.aSCIIToolStripMenuItem2.Name = "aSCIIToolStripMenuItem2";
-			this.aSCIIToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+			this.aSCIIToolStripMenuItem2.Size = new System.Drawing.Size(276, 22);
 			this.aSCIIToolStripMenuItem2.Text = "ASCII";
+			this.aSCIIToolStripMenuItem2.Click += new System.EventHandler(this.ASCIIToolStripMenuItem2Click);
 			// 
 			// uTF8ToolStripMenuItem2
 			// 
 			this.uTF8ToolStripMenuItem2.Checked = true;
 			this.uTF8ToolStripMenuItem2.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.uTF8ToolStripMenuItem2.Name = "uTF8ToolStripMenuItem2";
-			this.uTF8ToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+			this.uTF8ToolStripMenuItem2.Size = new System.Drawing.Size(276, 22);
 			this.uTF8ToolStripMenuItem2.Text = "UTF-8";
+			this.uTF8ToolStripMenuItem2.Click += new System.EventHandler(this.UTF8ToolStripMenuItem2Click);
 			// 
 			// uTF8WithoutBOMToolStripMenuItem2
 			// 
 			this.uTF8WithoutBOMToolStripMenuItem2.Name = "uTF8WithoutBOMToolStripMenuItem2";
-			this.uTF8WithoutBOMToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+			this.uTF8WithoutBOMToolStripMenuItem2.Size = new System.Drawing.Size(276, 22);
 			this.uTF8WithoutBOMToolStripMenuItem2.Text = "UTF-8 without BOM";
+			this.uTF8WithoutBOMToolStripMenuItem2.Click += new System.EventHandler(this.UTF8WithoutBOMToolStripMenuItem2Click);
 			// 
 			// сервисToolStripMenuItem
 			// 
@@ -388,6 +416,7 @@ namespace Catfish
 			this.выполнитьВБраузереToolStripMenuItem.Name = "выполнитьВБраузереToolStripMenuItem";
 			this.выполнитьВБраузереToolStripMenuItem.Size = new System.Drawing.Size(201, 22);
 			this.выполнитьВБраузереToolStripMenuItem.Text = "Выполнить в браузере.";
+			this.выполнитьВБраузереToolStripMenuItem.Click += new System.EventHandler(this.ВыполнитьВБраузереToolStripMenuItemClick);
 			// 
 			// toolStripSeparator6
 			// 
@@ -497,9 +526,9 @@ namespace Catfish
 									this.toolStripStatusLabel1,
 									this.toolStripStatusLabel2,
 									this.toolStripStatusLabel3});
-			this.statusStrip1.Location = new System.Drawing.Point(0, 342);
+			this.statusStrip1.Location = new System.Drawing.Point(0, 390);
 			this.statusStrip1.Name = "statusStrip1";
-			this.statusStrip1.Size = new System.Drawing.Size(730, 22);
+			this.statusStrip1.Size = new System.Drawing.Size(699, 22);
 			this.statusStrip1.TabIndex = 1;
 			this.statusStrip1.Text = "statusStrip1";
 			// 
@@ -560,7 +589,7 @@ namespace Catfish
 									this.toolStripButton19});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 24);
 			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(730, 25);
+			this.toolStrip1.Size = new System.Drawing.Size(699, 25);
 			this.toolStrip1.TabIndex = 2;
 			this.toolStrip1.Text = "toolStrip1";
 			// 
@@ -665,6 +694,7 @@ namespace Catfish
 			this.toolStripButton3.Name = "toolStripButton3";
 			this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
 			this.toolStripButton3.Text = "toolStripButton3";
+			this.toolStripButton3.Click += new System.EventHandler(this.ToolStripButton3Click);
 			// 
 			// toolStripButton4
 			// 
@@ -674,6 +704,7 @@ namespace Catfish
 			this.toolStripButton4.Name = "toolStripButton4";
 			this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
 			this.toolStripButton4.Text = "toolStripButton4";
+			this.toolStripButton4.Click += new System.EventHandler(this.ToolStripButton4Click);
 			// 
 			// toolStripSeparator4
 			// 
@@ -688,6 +719,7 @@ namespace Catfish
 			this.toolStripButton5.Name = "toolStripButton5";
 			this.toolStripButton5.Size = new System.Drawing.Size(23, 22);
 			this.toolStripButton5.Text = "toolStripButton5";
+			this.toolStripButton5.Click += new System.EventHandler(this.ToolStripButton5Click);
 			// 
 			// toolStripButton6
 			// 
@@ -697,6 +729,7 @@ namespace Catfish
 			this.toolStripButton6.Name = "toolStripButton6";
 			this.toolStripButton6.Size = new System.Drawing.Size(23, 22);
 			this.toolStripButton6.Text = "toolStripButton6";
+			this.toolStripButton6.Click += new System.EventHandler(this.ToolStripButton6Click);
 			// 
 			// toolStripButton7
 			// 
@@ -706,6 +739,7 @@ namespace Catfish
 			this.toolStripButton7.Name = "toolStripButton7";
 			this.toolStripButton7.Size = new System.Drawing.Size(23, 22);
 			this.toolStripButton7.Text = "toolStripButton7";
+			this.toolStripButton7.Click += new System.EventHandler(this.ToolStripButton7Click);
 			// 
 			// toolStripSeparator5
 			// 
@@ -720,6 +754,7 @@ namespace Catfish
 			this.toolStripButton8.Name = "toolStripButton8";
 			this.toolStripButton8.Size = new System.Drawing.Size(23, 22);
 			this.toolStripButton8.Text = "toolStripButton8";
+			this.toolStripButton8.Click += new System.EventHandler(this.ToolStripButton8Click);
 			// 
 			// toolStripSeparator9
 			// 
@@ -850,18 +885,23 @@ namespace Catfish
 			this.aSCIIToolStripMenuItem3.Name = "aSCIIToolStripMenuItem3";
 			this.aSCIIToolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
 			this.aSCIIToolStripMenuItem3.Text = "ASCII";
+			this.aSCIIToolStripMenuItem3.Click += new System.EventHandler(this.ASCIIToolStripMenuItem3Click);
 			// 
 			// uTF8ToolStripMenuItem3
 			// 
+			this.uTF8ToolStripMenuItem3.Checked = true;
+			this.uTF8ToolStripMenuItem3.CheckState = System.Windows.Forms.CheckState.Checked;
 			this.uTF8ToolStripMenuItem3.Name = "uTF8ToolStripMenuItem3";
 			this.uTF8ToolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
 			this.uTF8ToolStripMenuItem3.Text = "UTF-8";
+			this.uTF8ToolStripMenuItem3.Click += new System.EventHandler(this.UTF8ToolStripMenuItem3Click);
 			// 
 			// uTF8WithoutBOMToolStripMenuItem3
 			// 
 			this.uTF8WithoutBOMToolStripMenuItem3.Name = "uTF8WithoutBOMToolStripMenuItem3";
 			this.uTF8WithoutBOMToolStripMenuItem3.Size = new System.Drawing.Size(180, 22);
 			this.uTF8WithoutBOMToolStripMenuItem3.Text = "UTF-8 without BOM";
+			this.uTF8WithoutBOMToolStripMenuItem3.Click += new System.EventHandler(this.UTF8WithoutBOMToolStripMenuItem3Click);
 			// 
 			// toolStripButton19
 			// 
@@ -875,11 +915,12 @@ namespace Catfish
 			// richTextBox1
 			// 
 			this.richTextBox1.AcceptsTab = true;
+			this.richTextBox1.ContextMenuStrip = this.contextMenuStrip1;
 			this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.richTextBox1.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.richTextBox1.Location = new System.Drawing.Point(0, 49);
 			this.richTextBox1.Name = "richTextBox1";
-			this.richTextBox1.Size = new System.Drawing.Size(730, 293);
+			this.richTextBox1.Size = new System.Drawing.Size(699, 341);
 			this.richTextBox1.TabIndex = 3;
 			this.richTextBox1.Text = "";
 			this.richTextBox1.WordWrap = false;
@@ -888,6 +929,71 @@ namespace Catfish
 			this.richTextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RichTextBox1KeyPress);
 			this.richTextBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.RichTextBox1KeyUp);
 			this.richTextBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.RichTextBox1MouseMove);
+			// 
+			// contextMenuStrip1
+			// 
+			this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+									this.toolStripMenuItem1,
+									this.toolStripMenuItem2,
+									this.toolStripSeparator13,
+									this.toolStripMenuItem3,
+									this.toolStripMenuItem4,
+									this.toolStripMenuItem5,
+									this.toolStripMenuItem6});
+			this.contextMenuStrip1.Name = "contextMenuStrip1";
+			this.contextMenuStrip1.Size = new System.Drawing.Size(143, 142);
+			// 
+			// toolStripMenuItem1
+			// 
+			this.toolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem1.Image")));
+			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+			this.toolStripMenuItem1.Size = new System.Drawing.Size(142, 22);
+			this.toolStripMenuItem1.Text = "Отменить.";
+			this.toolStripMenuItem1.Click += new System.EventHandler(this.ToolStripMenuItem1Click);
+			// 
+			// toolStripMenuItem2
+			// 
+			this.toolStripMenuItem2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem2.Image")));
+			this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+			this.toolStripMenuItem2.Size = new System.Drawing.Size(142, 22);
+			this.toolStripMenuItem2.Text = "Повторить.";
+			this.toolStripMenuItem2.Click += new System.EventHandler(this.ToolStripMenuItem2Click);
+			// 
+			// toolStripSeparator13
+			// 
+			this.toolStripSeparator13.Name = "toolStripSeparator13";
+			this.toolStripSeparator13.Size = new System.Drawing.Size(139, 6);
+			// 
+			// toolStripMenuItem3
+			// 
+			this.toolStripMenuItem3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem3.Image")));
+			this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+			this.toolStripMenuItem3.Size = new System.Drawing.Size(142, 22);
+			this.toolStripMenuItem3.Text = "Вырезать.";
+			this.toolStripMenuItem3.Click += new System.EventHandler(this.ToolStripMenuItem3Click);
+			// 
+			// toolStripMenuItem4
+			// 
+			this.toolStripMenuItem4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem4.Image")));
+			this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+			this.toolStripMenuItem4.Size = new System.Drawing.Size(142, 22);
+			this.toolStripMenuItem4.Text = "Копировать.";
+			this.toolStripMenuItem4.Click += new System.EventHandler(this.ToolStripMenuItem4Click);
+			// 
+			// toolStripMenuItem5
+			// 
+			this.toolStripMenuItem5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem5.Image")));
+			this.toolStripMenuItem5.Name = "toolStripMenuItem5";
+			this.toolStripMenuItem5.Size = new System.Drawing.Size(142, 22);
+			this.toolStripMenuItem5.Text = "Вставить.";
+			this.toolStripMenuItem5.Click += new System.EventHandler(this.ToolStripMenuItem5Click);
+			// 
+			// toolStripMenuItem6
+			// 
+			this.toolStripMenuItem6.Name = "toolStripMenuItem6";
+			this.toolStripMenuItem6.Size = new System.Drawing.Size(142, 22);
+			this.toolStripMenuItem6.Text = "Удалить.";
+			this.toolStripMenuItem6.Click += new System.EventHandler(this.ToolStripMenuItem6Click);
 			// 
 			// panel1
 			// 
@@ -934,11 +1040,34 @@ namespace Catfish
 			// 
 			this.openFileDialog1.Filter = resources.GetString("openFileDialog1.Filter");
 			// 
+			// toolStripSeparator15
+			// 
+			this.toolStripSeparator15.Name = "toolStripSeparator15";
+			this.toolStripSeparator15.Size = new System.Drawing.Size(273, 6);
+			// 
+			// преобразоватьВASCIIToolStripMenuItem
+			// 
+			this.преобразоватьВASCIIToolStripMenuItem.Name = "преобразоватьВASCIIToolStripMenuItem";
+			this.преобразоватьВASCIIToolStripMenuItem.Size = new System.Drawing.Size(276, 22);
+			this.преобразоватьВASCIIToolStripMenuItem.Text = "Преобразовать в ASCII";
+			// 
+			// преобразоватьВUTF8ToolStripMenuItem
+			// 
+			this.преобразоватьВUTF8ToolStripMenuItem.Name = "преобразоватьВUTF8ToolStripMenuItem";
+			this.преобразоватьВUTF8ToolStripMenuItem.Size = new System.Drawing.Size(276, 22);
+			this.преобразоватьВUTF8ToolStripMenuItem.Text = "Преобразовать в UTF-8";
+			// 
+			// преобразоватьВUTF8WithoutBOMToolStripMenuItem
+			// 
+			this.преобразоватьВUTF8WithoutBOMToolStripMenuItem.Name = "преобразоватьВUTF8WithoutBOMToolStripMenuItem";
+			this.преобразоватьВUTF8WithoutBOMToolStripMenuItem.Size = new System.Drawing.Size(276, 22);
+			this.преобразоватьВUTF8WithoutBOMToolStripMenuItem.Text = "Преобразовать в UTF-8 without BOM";
+			// 
 			// Editor
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(730, 364);
+			this.ClientSize = new System.Drawing.Size(699, 412);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.richTextBox1);
 			this.Controls.Add(this.toolStrip1);
@@ -956,11 +1085,24 @@ namespace Catfish
 			this.statusStrip1.PerformLayout();
 			this.toolStrip1.ResumeLayout(false);
 			this.toolStrip1.PerformLayout();
+			this.contextMenuStrip1.ResumeLayout(false);
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.ToolStripMenuItem преобразоватьВUTF8WithoutBOMToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem преобразоватьВUTF8ToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem преобразоватьВASCIIToolStripMenuItem;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator15;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem6;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem5;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+		private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
+		private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
 		private System.Windows.Forms.OpenFileDialog openFileDialog1;
 		private System.Windows.Forms.SaveFileDialog saveFileDialog1;
 		private System.Windows.Forms.ToolStripMenuItem uTF8WithoutBOMToolStripMenuItem3;

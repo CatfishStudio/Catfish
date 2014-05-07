@@ -273,7 +273,7 @@ namespace Catfish
 					richTextBox1.LoadFile(sr.BaseStream, RichTextBoxStreamType.PlainText);
 					sr.Close();
 					this.Text = openFileDialog1.FileName;
-					toolStripStatusLabel1.Text = "Кодировка: UTF-8";
+					checkedCoding("Кодировка: UTF-8", false, true, false);
 				}else{
 					// определяем ASCII или UTF-8 без BOM
 					bool typeUTF8Wb = true;
@@ -285,7 +285,7 @@ namespace Catfish
 						richTextBox1.LoadFile(sr.BaseStream, RichTextBoxStreamType.PlainText);
 						sr.Close();
 						this.Text = openFileDialog1.FileName;
-						toolStripStatusLabel1.Text = "Кодировка: ASCII";
+						checkedCoding("Кодировка: ASCII", true, false, false);
 						
 					}else{ // определено как UTF-8 без BOM
 						UTF8Encoding utf8wb = new UTF8Encoding(false);
@@ -295,7 +295,7 @@ namespace Catfish
 							richTextBox1.Text += sr.ReadLine().ToString() + System.Environment.NewLine;
 						sr.Close();
 						this.Text = openFileDialog1.FileName;
-						toolStripStatusLabel1.Text = "Кодировка: UTF-8 without BOM";
+						checkedCoding("Кодировка: UTF-8 without BOM", false, false, true);
 					}
 				}
 			}
@@ -315,7 +315,7 @@ namespace Catfish
 				richTextBox1.LoadFile(sr.BaseStream, RichTextBoxStreamType.PlainText);
 				sr.Close();
 				this.Text = openFileDialog1.FileName;
-				toolStripStatusLabel1.Text = "Кодировка: ASCII";
+				checkedCoding("Кодировка: ASCII", true, false, false);
 			}
 		}
 		
@@ -333,7 +333,7 @@ namespace Catfish
 				richTextBox1.LoadFile(sr.BaseStream, RichTextBoxStreamType.PlainText);
 				sr.Close();
 				this.Text = openFileDialog1.FileName;
-				toolStripStatusLabel1.Text = "Кодировка: UTF-8";
+				checkedCoding("Кодировка: UTF-8", false, true, false);
 			}
 		}
 		
@@ -353,7 +353,7 @@ namespace Catfish
 					richTextBox1.Text += sr.ReadLine().ToString() + System.Environment.NewLine;
 				sr.Close();
 				this.Text = openFileDialog1.FileName;
-				toolStripStatusLabel1.Text = "Кодировка: UTF-8 without BOM";
+				checkedCoding("Кодировка: UTF-8 without BOM", false, false, true);
 			}
 		}
 		
@@ -382,7 +382,7 @@ namespace Catfish
 				if(saveFileDialog1.ShowDialog() == DialogResult.OK){
 					richTextBox1.SaveFile(saveFileDialog1.FileName, RichTextBoxStreamType.PlainText);
 					this.Text = saveFileDialog1.FileName;
-					toolStripStatusLabel1.Text = "Кодировка: ASCII";
+					checkedCoding("Кодировка: ASCII", true, false, false);
 					MessageBox.Show("Файл успешно сохранён!");
 				}
 			}else{
@@ -406,7 +406,7 @@ namespace Catfish
 					sw.Write(richTextBox1.Text);
 					sw.Close();
 					this.Text = saveFileDialog1.FileName;
-					toolStripStatusLabel1.Text = "Кодировка: UTF-8";
+					checkedCoding("Кодировка: UTF-8", false, true, false);
 					MessageBox.Show("Файл успешно сохранён!");
 				}
 			}else{
@@ -432,7 +432,7 @@ namespace Catfish
 					sw.Write(richTextBox1.Text);
 					sw.Close();
 					this.Text = saveFileDialog1.FileName;
-					toolStripStatusLabel1.Text = "Кодировка: UTF-8 without BOM";
+					checkedCoding("Кодировка: UTF-8 without BOM", false, false, true);
 					MessageBox.Show("Файл успешно сохранён!");
 				}
 			}else{
@@ -448,6 +448,88 @@ namespace Catfish
 		{
 			fileSaveUTF8wBOM(true); // сохраняем файл как UTF-8 without BOM
 		}
+		
+		/*-----------------------------------------------------------------*/
+		
+		/* Смена кодировки ------------------------------------------------*/
+		void checkedCoding(String _codingName, bool _asciiChecked, bool _utf8Checked, bool _utf8wbChecked)
+		{
+			toolStripStatusLabel1.Text = _codingName;
+			aSCIIToolStripMenuItem2.Checked = _asciiChecked;
+			aSCIIToolStripMenuItem3.Checked = _asciiChecked;
+			uTF8ToolStripMenuItem2.Checked = _utf8Checked;
+			uTF8ToolStripMenuItem3.Checked = _utf8Checked;
+			uTF8WithoutBOMToolStripMenuItem2.Checked = _utf8wbChecked;
+			uTF8WithoutBOMToolStripMenuItem3.Checked = _utf8wbChecked;
+		}
+		void changeEncoding(String _codingName, String _filePath)
+		{
+			if(_filePath == "Редактор" || _filePath == ""){
+				if(_codingName == "ascii") checkedCoding("Кодировка: ASCII", true, false, false);
+				if(_codingName == "utf8") checkedCoding("Кодировка: UTF-8", false, true, false);
+				if(_codingName == "utf8 without bom") checkedCoding("Кодировка: UTF-8 without BOM", false, false, true);
+			}else{
+				/* Переоткрываем файл в кодировке ASCII */
+				if(_codingName == "ascii"){
+					StreamReader sr = new StreamReader(_filePath, System.Text.Encoding.ASCII);
+					richTextBox1.Clear();
+					richTextBox1.LoadFile(sr.BaseStream, RichTextBoxStreamType.PlainText);
+					sr.Close();
+					checkedCoding("Кодировка: ASCII", true, false, false);
+				}
+				/* Переоткрываем файл в кодировке UTF-8 */
+				if(_codingName == "utf8"){
+					StreamReader sr = new StreamReader(_filePath, System.Text.Encoding.UTF8);
+					richTextBox1.Clear();
+					richTextBox1.LoadFile(sr.BaseStream, RichTextBoxStreamType.PlainText);
+					sr.Close();
+					checkedCoding("Кодировка: UTF-8", false, true, false);
+				}
+				/* Переоткрываем файл в кодировке UTF-8 without BOM */
+				if(_codingName == "utf8 without bom"){
+					UTF8Encoding utf8wb = new UTF8Encoding(false);
+					StreamReader sr = new StreamReader(_filePath, utf8wb);
+					richTextBox1.Clear();
+					while (sr.Peek() > -1)
+						richTextBox1.Text += sr.ReadLine().ToString() + System.Environment.NewLine;
+					sr.Close();
+					checkedCoding("Кодировка: UTF-8 without BOM", false, false, true);
+				}
+			}
+		}
+		
+		/* Смена кодировки на ASCII */
+		void ASCIIToolStripMenuItem2Click(object sender, EventArgs e)
+		{
+			changeEncoding("ascii", this.Text);
+		}
+		void ASCIIToolStripMenuItem3Click(object sender, EventArgs e)
+		{
+			changeEncoding("ascii", this.Text);
+		}
+		
+		/* Смена кодировки на UTF-8 */
+		void UTF8ToolStripMenuItem2Click(object sender, EventArgs e)
+		{
+			changeEncoding("utf8", this.Text);
+		}
+		void UTF8ToolStripMenuItem3Click(object sender, EventArgs e)
+		{
+			changeEncoding("utf8", this.Text);
+		}
+		
+		/* Смена кодировки на UTF-8 without BOM */
+		void UTF8WithoutBOMToolStripMenuItem2Click(object sender, EventArgs e)
+		{
+			changeEncoding("utf8 without bom", this.Text);
+		}
+		void UTF8WithoutBOMToolStripMenuItem3Click(object sender, EventArgs e)
+		{
+			changeEncoding("utf8 without bom", this.Text);
+		}
+				
+		
+		
 		
 		/* Панель инструментов (меню файл) ------------------------------- */
 		void ToolStripButton1Click(object sender, EventArgs e)
@@ -500,6 +582,155 @@ namespace Catfish
 			/* Очистка */
 			this.Text = "Редактор";
 			richTextBox1.Clear();
+		}
+		
+		/* Правка: Отмена, Повтор, Вырезать, Копировать, Вставить, Удалить */
+		void editUndo() // отмена
+		{
+			richTextBox1.Undo();
+		}
+		
+		void editRedo() // повтор
+		{
+			richTextBox1.Redo();
+		}
+		
+		void editCut() // вырезать
+		{
+			richTextBox1.Cut();
+		}
+		
+		void editCopy() // копировать
+		{
+			richTextBox1.Copy();
+		}
+		
+		void editPaste() // вставить
+		{
+			richTextBox1.Paste();
+		}
+		
+		void editDelete() // удалить
+		{
+			Clipboard.SetDataObject("");
+			richTextBox1.Paste();
+		}
+		
+		void ОтменитьToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			editUndo();
+		}
+		
+		void ToolStripButton3Click(object sender, EventArgs e)
+		{
+			editUndo();
+		}
+		
+		void ToolStripMenuItem1Click(object sender, EventArgs e)
+		{
+			editUndo();
+		}
+		
+		void ПовторитьToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			editRedo();
+		}
+		
+		void ToolStripButton4Click(object sender, EventArgs e)
+		{
+			editRedo();
+		}
+		
+		void ToolStripMenuItem2Click(object sender, EventArgs e)
+		{
+			editRedo();
+		}
+		
+		void ВырезатьToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			editCut();
+		}
+		
+		void ToolStripButton5Click(object sender, EventArgs e)
+		{
+			editCut();
+		}
+		
+		void ToolStripMenuItem3Click(object sender, EventArgs e)
+		{
+			editCut();
+		}
+		
+		void КопироватьToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			editCopy();
+		}
+		
+		void ToolStripButton6Click(object sender, EventArgs e)
+		{
+			editCopy();
+		}
+		
+		void ToolStripMenuItem4Click(object sender, EventArgs e)
+		{
+			editCopy();
+		}
+		
+		void ВставитьToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			editPaste();
+		}
+		
+		void ToolStripButton7Click(object sender, EventArgs e)
+		{
+			editPaste();
+		}
+		
+		void ToolStripMenuItem5Click(object sender, EventArgs e)
+		{
+			editPaste();
+		}
+		
+		void УдалитьToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			editDelete();
+		}
+		
+		void ToolStripMenuItem6Click(object sender, EventArgs e)
+		{
+			editDelete();			
+		}
+		/*--------------------------------*/
+		
+		/* Вид: отображение панели инструментов */
+		void ПанельИнструментовToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			if(панельИнструментовToolStripMenuItem.Checked){
+				панельИнструментовToolStripMenuItem.Checked = false;
+				toolStrip1.Visible = false;
+			}else{
+				панельИнструментовToolStripMenuItem.Checked = true;
+				toolStrip1.Visible = true;
+			}
+		}
+		
+		/* СЕРВИС -----------------------------------------------------------*/
+		/* Выполнение в браузере */
+		void runBrowser(String _filePath)
+		{
+			if(_filePath != "Редактор" && _filePath != ""){
+				System.Diagnostics.Process.Start(_filePath);
+			}
+		}
+		
+		void ВыполнитьВБраузереToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			runBrowser(this.Text);
+		}
+		
+		void ToolStripButton8Click(object sender, EventArgs e)
+		{
+			runBrowser(this.Text);
 		}
 	}
 }
