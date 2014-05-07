@@ -258,10 +258,9 @@ namespace Catfish
 		/*---------------------------------------------*/
 		
 		/* Открыть файл -------------------------------*/
-		void ОткрытьФайлToolStripMenuItemClick(object sender, EventArgs e)
+		void fileOpen()
 		{
 			if(openFileDialog1.ShowDialog() == DialogResult.OK){
-				
 				
 				BinaryReader instr = new BinaryReader(File.OpenRead(openFileDialog1.FileName));
 				byte[] data = instr.ReadBytes((int)instr.BaseStream.Length);
@@ -287,48 +286,93 @@ namespace Catfish
 						sr.Close();
 						this.Text = openFileDialog1.FileName;
 						toolStripStatusLabel1.Text = "Кодировка: ASCII";
+						
 					}else{ // определено как UTF-8 без BOM
 						UTF8Encoding utf8wb = new UTF8Encoding(false);
 						StreamReader sr = new StreamReader(openFileDialog1.FileName, utf8wb);
 						richTextBox1.Clear();
 						while (sr.Peek() > -1)
 							richTextBox1.Text += sr.ReadLine().ToString() + System.Environment.NewLine;
-							
 						sr.Close();
 						this.Text = openFileDialog1.FileName;
 						toolStripStatusLabel1.Text = "Кодировка: UTF-8 without BOM";
 					}
 				}
-				
 			}
-			
-			
+		}
+		
+		void ОткрытьФайлToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			fileOpen(); // открываем файл в кодировке по умолчанию
 		}
 		
 		/* Открыть файл ASCII */
+		void fileOpenASCII()
+		{
+			if(openFileDialog1.ShowDialog() == DialogResult.OK){
+				StreamReader sr = new StreamReader(openFileDialog1.FileName, System.Text.Encoding.ASCII);
+				richTextBox1.Clear();
+				richTextBox1.LoadFile(sr.BaseStream, RichTextBoxStreamType.PlainText);
+				sr.Close();
+				this.Text = openFileDialog1.FileName;
+				toolStripStatusLabel1.Text = "Кодировка: ASCII";
+			}
+		}
+		
 		void ASCIIToolStripMenuItemClick(object sender, EventArgs e)
 		{
-			
+			fileOpenASCII(); // открываем файл как ASCII
 		}
 		
 		/* Открыть файл UTF-8 */
+		void fileOpenUTF8()
+		{
+			if(openFileDialog1.ShowDialog() == DialogResult.OK){
+				StreamReader sr = new StreamReader(openFileDialog1.FileName, System.Text.Encoding.UTF8);
+				richTextBox1.Clear();
+				richTextBox1.LoadFile(sr.BaseStream, RichTextBoxStreamType.PlainText);
+				sr.Close();
+				this.Text = openFileDialog1.FileName;
+				toolStripStatusLabel1.Text = "Кодировка: UTF-8";
+			}
+		}
+		
 		void UTF8ToolStripMenuItemClick(object sender, EventArgs e)
 		{
-			
+			fileOpenUTF8();  // открываем файл как UTF-8
 		}
 		
 		/* Открыть файл UTF-8 without BOM*/
+		void fileOpenUTF8wB()
+		{
+			if(openFileDialog1.ShowDialog() == DialogResult.OK){
+				UTF8Encoding utf8wb = new UTF8Encoding(false);
+				StreamReader sr = new StreamReader(openFileDialog1.FileName, utf8wb);
+				richTextBox1.Clear();
+				while (sr.Peek() > -1)
+					richTextBox1.Text += sr.ReadLine().ToString() + System.Environment.NewLine;
+				sr.Close();
+				this.Text = openFileDialog1.FileName;
+				toolStripStatusLabel1.Text = "Кодировка: UTF-8 without BOM";
+			}
+		}
+		
 		void UTF8WithoutBOMToolStripMenuItemClick(object sender, EventArgs e)
 		{
-			
+			fileOpenUTF8wB(); // открываем файл как UTF-8 without BOM
 		}
 		
 		/* Сохранить файл ------------------------------*/
-		void СохранитьФайлToolStripMenuItemClick(object sender, EventArgs e)
+		void fileSave()
 		{
 			if(toolStripStatusLabel1.Text == "Кодировка: ASCII") fileSaveASCII(false);
 			if(toolStripStatusLabel1.Text == "Кодировка: UTF-8") fileSaveUTF8(false);
 			if(toolStripStatusLabel1.Text == "Кодировка: UTF-8 without BOM") fileSaveUTF8wBOM(false);
+		}
+		
+		void СохранитьФайлToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			fileSave(); // сохраняем файл в кодировке по умолчанию
 		}
 		
 		/* Сохранить файл ASCII */
@@ -403,6 +447,59 @@ namespace Catfish
 		void UTF8WithoutBOMToolStripMenuItem1Click(object sender, EventArgs e)
 		{
 			fileSaveUTF8wBOM(true); // сохраняем файл как UTF-8 without BOM
+		}
+		
+		/* Панель инструментов (меню файл) ------------------------------- */
+		void ToolStripButton1Click(object sender, EventArgs e)
+		{
+			fileOpen();
+		}
+		
+		void ОткрытьФайлКакASCIIToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			fileOpenASCII();
+		}
+		
+		void ОткрытьФайлКакUTF8ToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			fileOpenUTF8();
+		}
+		
+		void ОткрытьФайлКакUTF8WithoutBOMToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			fileOpenUTF8wB();
+		}
+		
+		void ToolStripButton2Click(object sender, EventArgs e)
+		{
+			fileSave();
+		}
+		
+		void СохранитьФайлКакASCIIToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			fileSaveASCII(true);
+		}
+		
+		void СохранитьФайлКакUTF8ToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			fileSaveUTF8(true);
+		}
+		
+		void СохранитьФайлКакUTF8WithoutBOMToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			fileSaveUTF8wBOM(true);
+		}
+		/*-----------------------------------------*/
+		
+		/*Закрыть файл*/
+		void ЗакрытьФайлToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			if(MessageBox.Show("Сохранить файл перед закрытием?","Вопрос:", MessageBoxButtons.YesNo) == DialogResult.Yes){
+				fileSave();
+			}
+			/* Очистка */
+			this.Text = "Редактор";
+			richTextBox1.Clear();
 		}
 	}
 }

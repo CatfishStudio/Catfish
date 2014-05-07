@@ -61,6 +61,10 @@ namespace Catfish
 			this.удалитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.видToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.панельИнструментовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.кодировкаДокументаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.aSCIIToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+			this.uTF8ToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+			this.uTF8WithoutBOMToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
 			this.сервисToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.выполнитьВБраузереToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
@@ -76,11 +80,6 @@ namespace Catfish
 			this.шрифтToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.цветToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.цветФонаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripSeparator13 = new System.Windows.Forms.ToolStripSeparator();
-			this.кодировкаДокументаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.aSCIIToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-			this.uTF8ToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-			this.uTF8WithoutBOMToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
 			this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -145,6 +144,7 @@ namespace Catfish
 									this.файлToolStripMenuItem,
 									this.правкаToolStripMenuItem,
 									this.видToolStripMenuItem,
+									this.кодировкаДокументаToolStripMenuItem,
 									this.сервисToolStripMenuItem,
 									this.настройкиToolStripMenuItem,
 									this.справкаToolStripMenuItem});
@@ -257,6 +257,7 @@ namespace Catfish
 			this.закрытьФайлToolStripMenuItem.Name = "закрытьФайлToolStripMenuItem";
 			this.закрытьФайлToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
 			this.закрытьФайлToolStripMenuItem.Text = "Закрыть файл.";
+			this.закрытьФайлToolStripMenuItem.Click += new System.EventHandler(this.ЗакрытьФайлToolStripMenuItemClick);
 			// 
 			// правкаToolStripMenuItem
 			// 
@@ -333,6 +334,36 @@ namespace Catfish
 			this.панельИнструментовToolStripMenuItem.Name = "панельИнструментовToolStripMenuItem";
 			this.панельИнструментовToolStripMenuItem.Size = new System.Drawing.Size(196, 22);
 			this.панельИнструментовToolStripMenuItem.Text = "Панель инструментов";
+			// 
+			// кодировкаДокументаToolStripMenuItem
+			// 
+			this.кодировкаДокументаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+									this.aSCIIToolStripMenuItem2,
+									this.uTF8ToolStripMenuItem2,
+									this.uTF8WithoutBOMToolStripMenuItem2});
+			this.кодировкаДокументаToolStripMenuItem.Name = "кодировкаДокументаToolStripMenuItem";
+			this.кодировкаДокументаToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
+			this.кодировкаДокументаToolStripMenuItem.Text = "Кодировки";
+			// 
+			// aSCIIToolStripMenuItem2
+			// 
+			this.aSCIIToolStripMenuItem2.Name = "aSCIIToolStripMenuItem2";
+			this.aSCIIToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+			this.aSCIIToolStripMenuItem2.Text = "ASCII";
+			// 
+			// uTF8ToolStripMenuItem2
+			// 
+			this.uTF8ToolStripMenuItem2.Checked = true;
+			this.uTF8ToolStripMenuItem2.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.uTF8ToolStripMenuItem2.Name = "uTF8ToolStripMenuItem2";
+			this.uTF8ToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+			this.uTF8ToolStripMenuItem2.Text = "UTF-8";
+			// 
+			// uTF8WithoutBOMToolStripMenuItem2
+			// 
+			this.uTF8WithoutBOMToolStripMenuItem2.Name = "uTF8WithoutBOMToolStripMenuItem2";
+			this.uTF8WithoutBOMToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
+			this.uTF8WithoutBOMToolStripMenuItem2.Text = "UTF-8 without BOM";
 			// 
 			// сервисToolStripMenuItem
 			// 
@@ -419,9 +450,7 @@ namespace Catfish
 			this.настройкиToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
 									this.шрифтToolStripMenuItem,
 									this.цветToolStripMenuItem,
-									this.цветФонаToolStripMenuItem,
-									this.toolStripSeparator13,
-									this.кодировкаДокументаToolStripMenuItem});
+									this.цветФонаToolStripMenuItem});
 			this.настройкиToolStripMenuItem.Name = "настройкиToolStripMenuItem";
 			this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(79, 20);
 			this.настройкиToolStripMenuItem.Text = "Настройки";
@@ -430,56 +459,22 @@ namespace Catfish
 			// 
 			this.шрифтToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("шрифтToolStripMenuItem.Image")));
 			this.шрифтToolStripMenuItem.Name = "шрифтToolStripMenuItem";
-			this.шрифтToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+			this.шрифтToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
 			this.шрифтToolStripMenuItem.Text = "Шрифт";
 			// 
 			// цветToolStripMenuItem
 			// 
 			this.цветToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("цветToolStripMenuItem.Image")));
 			this.цветToolStripMenuItem.Name = "цветToolStripMenuItem";
-			this.цветToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+			this.цветToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
 			this.цветToolStripMenuItem.Text = "Цвет текста";
 			// 
 			// цветФонаToolStripMenuItem
 			// 
 			this.цветФонаToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("цветФонаToolStripMenuItem.Image")));
 			this.цветФонаToolStripMenuItem.Name = "цветФонаToolStripMenuItem";
-			this.цветФонаToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
+			this.цветФонаToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
 			this.цветФонаToolStripMenuItem.Text = "Цвет фона";
-			// 
-			// toolStripSeparator13
-			// 
-			this.toolStripSeparator13.Name = "toolStripSeparator13";
-			this.toolStripSeparator13.Size = new System.Drawing.Size(194, 6);
-			// 
-			// кодировкаДокументаToolStripMenuItem
-			// 
-			this.кодировкаДокументаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-									this.aSCIIToolStripMenuItem2,
-									this.uTF8ToolStripMenuItem2,
-									this.uTF8WithoutBOMToolStripMenuItem2});
-			this.кодировкаДокументаToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("кодировкаДокументаToolStripMenuItem.Image")));
-			this.кодировкаДокументаToolStripMenuItem.Name = "кодировкаДокументаToolStripMenuItem";
-			this.кодировкаДокументаToolStripMenuItem.Size = new System.Drawing.Size(197, 22);
-			this.кодировкаДокументаToolStripMenuItem.Text = "Кодировка документа:";
-			// 
-			// aSCIIToolStripMenuItem2
-			// 
-			this.aSCIIToolStripMenuItem2.Name = "aSCIIToolStripMenuItem2";
-			this.aSCIIToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
-			this.aSCIIToolStripMenuItem2.Text = "ASCII";
-			// 
-			// uTF8ToolStripMenuItem2
-			// 
-			this.uTF8ToolStripMenuItem2.Name = "uTF8ToolStripMenuItem2";
-			this.uTF8ToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
-			this.uTF8ToolStripMenuItem2.Text = "UTF-8";
-			// 
-			// uTF8WithoutBOMToolStripMenuItem2
-			// 
-			this.uTF8WithoutBOMToolStripMenuItem2.Name = "uTF8WithoutBOMToolStripMenuItem2";
-			this.uTF8WithoutBOMToolStripMenuItem2.Size = new System.Drawing.Size(180, 22);
-			this.uTF8WithoutBOMToolStripMenuItem2.Text = "UTF-8 without BOM";
 			// 
 			// справкаToolStripMenuItem
 			// 
@@ -511,8 +506,8 @@ namespace Catfish
 			// toolStripStatusLabel1
 			// 
 			this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-			this.toolStripStatusLabel1.Size = new System.Drawing.Size(100, 17);
-			this.toolStripStatusLabel1.Text = "Кодировка: ASCII";
+			this.toolStripStatusLabel1.Size = new System.Drawing.Size(104, 17);
+			this.toolStripStatusLabel1.Text = "Кодировка: UTF-8";
 			this.toolStripStatusLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 			// 
 			// toolStripStatusLabel2
@@ -577,6 +572,7 @@ namespace Catfish
 			this.toolStripButton1.Name = "toolStripButton1";
 			this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
 			this.toolStripButton1.Text = "toolStripButton1";
+			this.toolStripButton1.Click += new System.EventHandler(this.ToolStripButton1Click);
 			// 
 			// toolStripDropDownButton1
 			// 
@@ -596,18 +592,21 @@ namespace Catfish
 			this.открытьФайлКакASCIIToolStripMenuItem.Name = "открытьФайлКакASCIIToolStripMenuItem";
 			this.открытьФайлКакASCIIToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
 			this.открытьФайлКакASCIIToolStripMenuItem.Text = "Открыть файл как ASCII";
+			this.открытьФайлКакASCIIToolStripMenuItem.Click += new System.EventHandler(this.ОткрытьФайлКакASCIIToolStripMenuItemClick);
 			// 
 			// открытьФайлКакUTF8ToolStripMenuItem
 			// 
 			this.открытьФайлКакUTF8ToolStripMenuItem.Name = "открытьФайлКакUTF8ToolStripMenuItem";
 			this.открытьФайлКакUTF8ToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
 			this.открытьФайлКакUTF8ToolStripMenuItem.Text = "Открыть файл как UTF-8";
+			this.открытьФайлКакUTF8ToolStripMenuItem.Click += new System.EventHandler(this.ОткрытьФайлКакUTF8ToolStripMenuItemClick);
 			// 
 			// открытьФайлКакUTF8WithoutBOMToolStripMenuItem
 			// 
 			this.открытьФайлКакUTF8WithoutBOMToolStripMenuItem.Name = "открытьФайлКакUTF8WithoutBOMToolStripMenuItem";
 			this.открытьФайлКакUTF8WithoutBOMToolStripMenuItem.Size = new System.Drawing.Size(283, 22);
 			this.открытьФайлКакUTF8WithoutBOMToolStripMenuItem.Text = "Открыть файл как UTF-8 without BOM";
+			this.открытьФайлКакUTF8WithoutBOMToolStripMenuItem.Click += new System.EventHandler(this.ОткрытьФайлКакUTF8WithoutBOMToolStripMenuItemClick);
 			// 
 			// toolStripButton2
 			// 
@@ -617,6 +616,7 @@ namespace Catfish
 			this.toolStripButton2.Name = "toolStripButton2";
 			this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
 			this.toolStripButton2.Text = "toolStripButton2";
+			this.toolStripButton2.Click += new System.EventHandler(this.ToolStripButton2Click);
 			// 
 			// toolStripDropDownButton2
 			// 
@@ -636,18 +636,21 @@ namespace Catfish
 			this.сохранитьФайлКакASCIIToolStripMenuItem.Name = "сохранитьФайлКакASCIIToolStripMenuItem";
 			this.сохранитьФайлКакASCIIToolStripMenuItem.Size = new System.Drawing.Size(294, 22);
 			this.сохранитьФайлКакASCIIToolStripMenuItem.Text = "Сохранить файл как ASCII";
+			this.сохранитьФайлКакASCIIToolStripMenuItem.Click += new System.EventHandler(this.СохранитьФайлКакASCIIToolStripMenuItemClick);
 			// 
 			// сохранитьФайлКакUTF8ToolStripMenuItem
 			// 
 			this.сохранитьФайлКакUTF8ToolStripMenuItem.Name = "сохранитьФайлКакUTF8ToolStripMenuItem";
 			this.сохранитьФайлКакUTF8ToolStripMenuItem.Size = new System.Drawing.Size(294, 22);
 			this.сохранитьФайлКакUTF8ToolStripMenuItem.Text = "Сохранить файл как UTF-8";
+			this.сохранитьФайлКакUTF8ToolStripMenuItem.Click += new System.EventHandler(this.СохранитьФайлКакUTF8ToolStripMenuItemClick);
 			// 
 			// сохранитьФайлКакUTF8WithoutBOMToolStripMenuItem
 			// 
 			this.сохранитьФайлКакUTF8WithoutBOMToolStripMenuItem.Name = "сохранитьФайлКакUTF8WithoutBOMToolStripMenuItem";
 			this.сохранитьФайлКакUTF8WithoutBOMToolStripMenuItem.Size = new System.Drawing.Size(294, 22);
 			this.сохранитьФайлКакUTF8WithoutBOMToolStripMenuItem.Text = "Сохранить файл как UTF-8 without BOM";
+			this.сохранитьФайлКакUTF8WithoutBOMToolStripMenuItem.Click += new System.EventHandler(this.СохранитьФайлКакUTF8WithoutBOMToolStripMenuItemClick);
 			// 
 			// toolStripSeparator2
 			// 
@@ -925,11 +928,11 @@ namespace Catfish
 			// 
 			// saveFileDialog1
 			// 
-			this.saveFileDialog1.Filter = "*.*|*.*|*.html|*.html";
+			this.saveFileDialog1.Filter = resources.GetString("saveFileDialog1.Filter");
 			// 
 			// openFileDialog1
 			// 
-			this.openFileDialog1.Filter = "*.*|*.*|*.html|*.html";
+			this.openFileDialog1.Filter = resources.GetString("openFileDialog1.Filter");
 			// 
 			// Editor
 			// 
@@ -970,7 +973,6 @@ namespace Catfish
 		private System.Windows.Forms.ToolStripMenuItem uTF8ToolStripMenuItem2;
 		private System.Windows.Forms.ToolStripMenuItem aSCIIToolStripMenuItem2;
 		private System.Windows.Forms.ToolStripMenuItem кодировкаДокументаToolStripMenuItem;
-		private System.Windows.Forms.ToolStripSeparator toolStripSeparator13;
 		private System.Windows.Forms.ToolStripButton toolStripButton17;
 		private System.Windows.Forms.ToolStripComboBox toolStripComboBox1;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
