@@ -303,7 +303,7 @@ namespace Catfish
 			// 
 			this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
 			this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-			this.notifyIcon1.Text = "Помошник.";
+			this.notifyIcon1.Text = "Catfish";
 			this.notifyIcon1.Visible = true;
 			// 
 			// contextMenuStrip1
@@ -322,14 +322,14 @@ namespace Catfish
 									this.настройкиToolStripMenuItem,
 									this.выходToolStripMenuItem});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(222, 204);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(276, 204);
 			// 
 			// вызватьПомошникаToolStripMenuItem
 			// 
 			this.вызватьПомошникаToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("вызватьПомошникаToolStripMenuItem.Image")));
 			this.вызватьПомошникаToolStripMenuItem.Name = "вызватьПомошникаToolStripMenuItem";
-			this.вызватьПомошникаToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
-			this.вызватьПомошникаToolStripMenuItem.Text = "Вызвать помошника.";
+			this.вызватьПомошникаToolStripMenuItem.Size = new System.Drawing.Size(275, 22);
+			this.вызватьПомошникаToolStripMenuItem.Text = "Вызвать информационную систему.";
 			this.вызватьПомошникаToolStripMenuItem.Click += new System.EventHandler(this.ВызватьПомошникаToolStripMenuItemClick);
 			// 
 			// toolStripSeparator1

@@ -835,6 +835,9 @@
   <data name="openFileDialog1.Filter" xml:space="preserve">
     <value>Все файлы (*.*)|*.*|Текстовый файл (*.txt)|*.txt|Action Script (*.as)|*.as|Assembly language source file (*.asm)|*.asm|C source file (*.c)|*.c|C++ source file (*.cpp)|*.cpp|C# source file (*.cs)|*.cs|Hyper text (*.htm)|*.htm|Hyper text (*.html)|*.html|Cascade style sheets file (*.css)|*.css|Java (*.java)|*.java|Java Script (*.js)|*.js|PHP (*.php)|*.php</value>
   </data>
+  <metadata name="folderBrowserDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>747, 17</value>
+  </metadata>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         AAABAAcAAAAAAAEAIAA7NAAAdgAAAICAAAABACAAKAgBALE0AABAQAAAAQAgAChCAADZPAEAMDAAAAEA

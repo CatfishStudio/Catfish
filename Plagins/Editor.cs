@@ -715,7 +715,7 @@ namespace Catfish
 		}
 		
 		/* СЕРВИС -----------------------------------------------------------*/
-		/* Выполнение в браузере */
+		/* Выполнение файл */
 		void runBrowser(String _filePath)
 		{
 			if(_filePath != "Редактор" && _filePath != ""){
@@ -731,6 +731,26 @@ namespace Catfish
 		void ToolStripButton8Click(object sender, EventArgs e)
 		{
 			runBrowser(this.Text);
+		}
+		
+		/*DENWER --------------------------------------------------------*/
+		void denwerStart(){
+			String startFile = Config.DenwerPath + "Run.exe";
+			if(File.Exists(startFile)){
+				
+			}else{
+				folderBrowserDialog1.Description = "Выберите папку где расположен Denwer.";
+				if(folderBrowserDialog1.ShowDialog() == DialogResult.OK){
+					Config.DenwerPath = folderBrowserDialog1.SelectedPath;
+					MessageBox.Show(Config.DenwerPath);
+				}
+			}
+		}
+			
+		
+		void DenwerСтартToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			denwerStart();
 		}
 	}
 }
