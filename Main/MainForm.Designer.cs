@@ -50,7 +50,8 @@ namespace Catfish
 			this.toolStripButton9 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-			this.toolStripButton6 = new System.Windows.Forms.ToolStripButton();
+			this.toolStripButton6 = new System.Windows.Forms.ToolStripDropDownButton();
+			this.отображатьПоверхОконToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.treeView1 = new System.Windows.Forms.TreeView();
@@ -123,6 +124,7 @@ namespace Catfish
 			this.toolStripButton1.Name = "toolStripButton1";
 			this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
 			this.toolStripButton1.Text = "Создать папку.";
+			this.toolStripButton1.Click += new System.EventHandler(this.ToolStripButton1Click);
 			// 
 			// toolStripButton2
 			// 
@@ -132,6 +134,7 @@ namespace Catfish
 			this.toolStripButton2.Name = "toolStripButton2";
 			this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
 			this.toolStripButton2.Text = "Создать файл";
+			this.toolStripButton2.Click += new System.EventHandler(this.ToolStripButton2Click);
 			// 
 			// toolStripSeparator4
 			// 
@@ -146,6 +149,7 @@ namespace Catfish
 			this.toolStripButton3.Name = "toolStripButton3";
 			this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
 			this.toolStripButton3.Text = "Показать всё.";
+			this.toolStripButton3.Click += new System.EventHandler(this.ToolStripButton3Click);
 			// 
 			// toolStripSeparator5
 			// 
@@ -160,6 +164,7 @@ namespace Catfish
 			this.toolStripButton4.Name = "toolStripButton4";
 			this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
 			this.toolStripButton4.Text = "Блокнот";
+			this.toolStripButton4.Click += new System.EventHandler(this.ToolStripButton4Click);
 			// 
 			// toolStripButton8
 			// 
@@ -169,6 +174,7 @@ namespace Catfish
 			this.toolStripButton8.Name = "toolStripButton8";
 			this.toolStripButton8.Size = new System.Drawing.Size(23, 22);
 			this.toolStripButton8.Text = "Калькулятор";
+			this.toolStripButton8.Click += new System.EventHandler(this.ToolStripButton8Click);
 			// 
 			// toolStripSeparator7
 			// 
@@ -183,6 +189,7 @@ namespace Catfish
 			this.toolStripButton9.Name = "toolStripButton9";
 			this.toolStripButton9.Size = new System.Drawing.Size(23, 22);
 			this.toolStripButton9.Text = "Редактор";
+			this.toolStripButton9.Click += new System.EventHandler(this.ToolStripButton9Click);
 			// 
 			// toolStripButton5
 			// 
@@ -192,6 +199,7 @@ namespace Catfish
 			this.toolStripButton5.Name = "toolStripButton5";
 			this.toolStripButton5.Size = new System.Drawing.Size(23, 22);
 			this.toolStripButton5.Text = "FTP Клиент";
+			this.toolStripButton5.Click += new System.EventHandler(this.ToolStripButton5Click);
 			// 
 			// toolStripSeparator6
 			// 
@@ -201,11 +209,22 @@ namespace Catfish
 			// toolStripButton6
 			// 
 			this.toolStripButton6.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton6.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+									this.отображатьПоверхОконToolStripMenuItem1});
 			this.toolStripButton6.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton6.Image")));
 			this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton6.Name = "toolStripButton6";
-			this.toolStripButton6.Size = new System.Drawing.Size(23, 22);
+			this.toolStripButton6.Size = new System.Drawing.Size(29, 22);
 			this.toolStripButton6.Text = "Настройки";
+			// 
+			// отображатьПоверхОконToolStripMenuItem1
+			// 
+			this.отображатьПоверхОконToolStripMenuItem1.Checked = true;
+			this.отображатьПоверхОконToolStripMenuItem1.CheckState = System.Windows.Forms.CheckState.Checked;
+			this.отображатьПоверхОконToolStripMenuItem1.Name = "отображатьПоверхОконToolStripMenuItem1";
+			this.отображатьПоверхОконToolStripMenuItem1.Size = new System.Drawing.Size(215, 22);
+			this.отображатьПоверхОконToolStripMenuItem1.Text = "Отображать поверх окон.";
+			this.отображатьПоверхОконToolStripMenuItem1.Click += new System.EventHandler(this.ОтображатьПоверхОконToolStripMenuItem1Click);
 			// 
 			// toolStripButton7
 			// 
@@ -215,6 +234,7 @@ namespace Catfish
 			this.toolStripButton7.Name = "toolStripButton7";
 			this.toolStripButton7.Size = new System.Drawing.Size(23, 22);
 			this.toolStripButton7.Text = "Выход.";
+			this.toolStripButton7.Click += new System.EventHandler(this.ToolStripButton7Click);
 			// 
 			// splitContainer1
 			// 
@@ -368,6 +388,7 @@ namespace Catfish
 			this.показатьToolStripMenuItem.Name = "показатьToolStripMenuItem";
 			this.показатьToolStripMenuItem.Size = new System.Drawing.Size(275, 22);
 			this.показатьToolStripMenuItem.Text = "Показать всё содержимое.";
+			this.показатьToolStripMenuItem.Click += new System.EventHandler(this.ПоказатьToolStripMenuItemClick);
 			// 
 			// toolStripSeparator2
 			// 
@@ -418,6 +439,7 @@ namespace Catfish
 			this.калькуляторToolStripMenuItem.Name = "калькуляторToolStripMenuItem";
 			this.калькуляторToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
 			this.калькуляторToolStripMenuItem.Text = "Калькулятор.";
+			this.калькуляторToolStripMenuItem.Click += new System.EventHandler(this.КалькуляторToolStripMenuItemClick);
 			// 
 			// toolStripSeparator3
 			// 
@@ -458,14 +480,14 @@ namespace Catfish
 									this.toolStripComboBox2});
 			this.toolStrip2.Location = new System.Drawing.Point(0, 25);
 			this.toolStrip2.Name = "toolStrip2";
-			this.toolStrip2.Size = new System.Drawing.Size(266, 27);
+			this.toolStrip2.Size = new System.Drawing.Size(266, 25);
 			this.toolStrip2.TabIndex = 4;
 			this.toolStrip2.Text = "toolStrip2";
 			// 
 			// toolStripComboBox1
 			// 
 			this.toolStripComboBox1.Name = "toolStripComboBox1";
-			this.toolStripComboBox1.Size = new System.Drawing.Size(121, 27);
+			this.toolStripComboBox1.Size = new System.Drawing.Size(121, 25);
 			this.toolStripComboBox1.ToolTipText = "Поиск по имени файла";
 			this.toolStripComboBox1.SelectedIndexChanged += new System.EventHandler(this.ToolStripComboBox1SelectedIndexChanged);
 			this.toolStripComboBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ToolStripComboBox1KeyPress);
@@ -473,12 +495,12 @@ namespace Catfish
 			// toolStripSeparator9
 			// 
 			this.toolStripSeparator9.Name = "toolStripSeparator9";
-			this.toolStripSeparator9.Size = new System.Drawing.Size(6, 27);
+			this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
 			// 
 			// toolStripComboBox2
 			// 
 			this.toolStripComboBox2.Name = "toolStripComboBox2";
-			this.toolStripComboBox2.Size = new System.Drawing.Size(121, 23);
+			this.toolStripComboBox2.Size = new System.Drawing.Size(121, 25);
 			this.toolStripComboBox2.ToolTipText = "Поиск по содержанию файла";
 			this.toolStripComboBox2.SelectedIndexChanged += new System.EventHandler(this.ToolStripComboBox2SelectedIndexChanged);
 			this.toolStripComboBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ToolStripComboBox2KeyPress);
@@ -514,6 +536,7 @@ namespace Catfish
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.ToolStripMenuItem отображатьПоверхОконToolStripMenuItem1;
 		private System.Windows.Forms.ToolStripMenuItem системныеРесурсыToolStripMenuItem;
 		private System.Windows.Forms.ToolStripComboBox toolStripComboBox2;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
@@ -531,7 +554,7 @@ namespace Catfish
 		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
 		private System.Windows.Forms.StatusStrip statusStrip1;
 		private System.Windows.Forms.ToolStripButton toolStripButton7;
-		private System.Windows.Forms.ToolStripButton toolStripButton6;
+		private System.Windows.Forms.ToolStripDropDownButton toolStripButton6;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
 		private System.Windows.Forms.ToolStripButton toolStripButton5;
 		private System.Windows.Forms.ToolStripButton toolStripButton4;

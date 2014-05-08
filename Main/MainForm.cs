@@ -31,6 +31,7 @@ namespace Catfish
 		
 		private OleDbServerFull _localClient;
 		private DataSet _localDataSet;
+		private DataSet _localDataSet2;
 		
 		void ВызватьПомошникаToolStripMenuItemClick(object sender, EventArgs e)
 		{
@@ -48,10 +49,12 @@ namespace Catfish
 			if(this.TopMost){
 				this.TopMost = false;
 				отображатьПоверхОконToolStripMenuItem.Checked = false;
+				отображатьПоверхОконToolStripMenuItem1.Checked = false;
 			}
 			else {
 				this.TopMost = true;
 				отображатьПоверхОконToolStripMenuItem.Checked = true;
+				отображатьПоверхОконToolStripMenuItem1.Checked = false;
 			}
 		}		
 		
@@ -75,6 +78,7 @@ namespace Catfish
 			/* Инициализация базы данных */
 			_localClient = new OleDbServerFull(Config.PathBase);
 			_localDataSet = new DataSet();
+			_localDataSet2 = new DataSet();
 		}
 		
 		void ВыходToolStripMenuItemClick(object sender, EventArgs e)
@@ -204,6 +208,98 @@ namespace Catfish
 		void ToolStripComboBox2SelectedIndexChanged(object sender, EventArgs e)
 		{
 			keySearch("SELECT ДатаПоследнегоСохранения, ПапкаИдентификатор, СодержаниеФайла, Строка, ТипОбъекта, ФайлВПапке, ФайлИдентификатор FROM Хранилище WHERE СодержаниеФайла LIKE '%" + toolStripComboBox2.Text + "%' ORDER BY ФайлИдентификатор ASC", toolStripComboBox2);
+		}
+		
+		
+		/* Показать всё содержимое */
+		void showAll()
+		{
+			_localDataSet.Clear();
+			_localDataSet2.Clear();
+			
+			_localClient.SelectSqlCommand = "SELECT ДатаПоследнегоСохранения, ПапкаИдентификатор, СодержаниеФайла, Строка, ТипОбъекта, ФайлВПапке, ФайлИдентификатор FROM Хранилище ORDER BY ПапкаИдентификатор ASC";
+			_localClient.ExecuteFill(_localDataSet, "Хранилище");
+			
+			_localClient.SelectSqlCommand = "SELECT ДатаПоследнегоСохранения, ПапкаИдентификатор, СодержаниеФайла, Строка, ТипОбъекта, ФайлВПапке, ФайлИдентификатор FROM Хранилище ORDER BY Строка ASC";
+			_localClient.ExecuteFill(_localDataSet2, "Хранилище");
+			
+			//Загрузка дерева
+			
+		}
+		
+		void ПоказатьToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			showAll();
+		}
+		
+		void ToolStripButton3Click(object sender, EventArgs e)
+		{
+			showAll();
+		}
+		
+		/* Создать папку */
+		void ToolStripButton1Click(object sender, EventArgs e)
+		{
+			Folder fFolder = new Folder();
+			if(this.TopMost) fFolder.TopMost = true;
+			fFolder.Show();			
+		}
+		
+		/* создать файл */
+		void ToolStripButton2Click(object sender, EventArgs e)
+		{
+			Element fFile = new Element();
+			if(this.TopMost) fFile.TopMost = true;
+			fFile.Show();
+		}
+		
+		/* Блокнот */
+		void ToolStripButton4Click(object sender, EventArgs e)
+		{
+			System.Diagnostics.Process.Start("notepad.exe"); // блокнот
+		}
+		
+		/* Калькулятор */
+		void ToolStripButton8Click(object sender, EventArgs e)
+		{
+			System.Diagnostics.Process.Start("calc.exe"); // калькулятор
+		}
+		
+		/* Редактор */
+		void ToolStripButton9Click(object sender, EventArgs e)
+		{
+			Editor fEditor = new Editor();
+			fEditor.Show();
+		}
+		
+		/* FTP клиент */
+		void ToolStripButton5Click(object sender, EventArgs e)
+		{
+			FTP fFTP = new FTP();
+			if(this.TopMost) fFTP.TopMost = true;
+			fFTP.Show();
+		}
+		
+		/* Настройки */
+		void ОтображатьПоверхОконToolStripMenuItem1Click(object sender, EventArgs e)
+		{
+			/* Опция: поверх всех окон */
+			if(this.TopMost){
+				this.TopMost = false;
+				отображатьПоверхОконToolStripMenuItem.Checked = false;
+				отображатьПоверхОконToolStripMenuItem1.Checked = false;
+			}
+			else {
+				this.TopMost = true;
+				отображатьПоверхОконToolStripMenuItem.Checked = true;
+				отображатьПоверхОконToolStripMenuItem1.Checked = false;
+			}
+		}
+		
+		/* Закрыть программу */
+		void ToolStripButton7Click(object sender, EventArgs e)
+		{
+			Application.Exit();
 		}
 		
 		
