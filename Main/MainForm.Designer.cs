@@ -335,7 +335,7 @@ namespace Catfish
 			// toolStripSeparator1
 			// 
 			this.toolStripSeparator1.Name = "toolStripSeparator1";
-			this.toolStripSeparator1.Size = new System.Drawing.Size(218, 6);
+			this.toolStripSeparator1.Size = new System.Drawing.Size(272, 6);
 			// 
 			// вводНовыхДанныхToolStripMenuItem
 			// 
@@ -343,7 +343,7 @@ namespace Catfish
 									this.создатьПапкуToolStripMenuItem,
 									this.создатьЗаписьToolStripMenuItem});
 			this.вводНовыхДанныхToolStripMenuItem.Name = "вводНовыхДанныхToolStripMenuItem";
-			this.вводНовыхДанныхToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+			this.вводНовыхДанныхToolStripMenuItem.Size = new System.Drawing.Size(275, 22);
 			this.вводНовыхДанныхToolStripMenuItem.Text = "Ввод новых данных:";
 			// 
 			// создатьПапкуToolStripMenuItem
@@ -366,19 +366,19 @@ namespace Catfish
 			// 
 			this.показатьToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("показатьToolStripMenuItem.Image")));
 			this.показатьToolStripMenuItem.Name = "показатьToolStripMenuItem";
-			this.показатьToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+			this.показатьToolStripMenuItem.Size = new System.Drawing.Size(275, 22);
 			this.показатьToolStripMenuItem.Text = "Показать всё содержимое.";
 			// 
 			// toolStripSeparator2
 			// 
 			this.toolStripSeparator2.Name = "toolStripSeparator2";
-			this.toolStripSeparator2.Size = new System.Drawing.Size(218, 6);
+			this.toolStripSeparator2.Size = new System.Drawing.Size(272, 6);
 			// 
 			// редакторToolStripMenuItem
 			// 
 			this.редакторToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("редакторToolStripMenuItem.Image")));
 			this.редакторToolStripMenuItem.Name = "редакторToolStripMenuItem";
-			this.редакторToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+			this.редакторToolStripMenuItem.Size = new System.Drawing.Size(275, 22);
 			this.редакторToolStripMenuItem.Text = "Редактор.";
 			this.редакторToolStripMenuItem.Click += new System.EventHandler(this.РедакторToolStripMenuItemClick);
 			// 
@@ -386,14 +386,14 @@ namespace Catfish
 			// 
 			this.fTPКлиентToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("fTPКлиентToolStripMenuItem.Image")));
 			this.fTPКлиентToolStripMenuItem.Name = "fTPКлиентToolStripMenuItem";
-			this.fTPКлиентToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+			this.fTPКлиентToolStripMenuItem.Size = new System.Drawing.Size(275, 22);
 			this.fTPКлиентToolStripMenuItem.Text = "FTP клиент.";
 			this.fTPКлиентToolStripMenuItem.Click += new System.EventHandler(this.FTPКлиентToolStripMenuItemClick);
 			// 
 			// toolStripSeparator8
 			// 
 			this.toolStripSeparator8.Name = "toolStripSeparator8";
-			this.toolStripSeparator8.Size = new System.Drawing.Size(218, 6);
+			this.toolStripSeparator8.Size = new System.Drawing.Size(272, 6);
 			// 
 			// системныеРесурсыToolStripMenuItem
 			// 
@@ -401,7 +401,7 @@ namespace Catfish
 									this.блокнотToolStripMenuItem,
 									this.калькуляторToolStripMenuItem});
 			this.системныеРесурсыToolStripMenuItem.Name = "системныеРесурсыToolStripMenuItem";
-			this.системныеРесурсыToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+			this.системныеРесурсыToolStripMenuItem.Size = new System.Drawing.Size(275, 22);
 			this.системныеРесурсыToolStripMenuItem.Text = "Системные ресурсы";
 			// 
 			// блокнотToolStripMenuItem
@@ -422,7 +422,7 @@ namespace Catfish
 			// toolStripSeparator3
 			// 
 			this.toolStripSeparator3.Name = "toolStripSeparator3";
-			this.toolStripSeparator3.Size = new System.Drawing.Size(218, 6);
+			this.toolStripSeparator3.Size = new System.Drawing.Size(272, 6);
 			// 
 			// настройкиToolStripMenuItem
 			// 
@@ -430,7 +430,7 @@ namespace Catfish
 									this.отображатьПоверхОконToolStripMenuItem});
 			this.настройкиToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("настройкиToolStripMenuItem.Image")));
 			this.настройкиToolStripMenuItem.Name = "настройкиToolStripMenuItem";
-			this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+			this.настройкиToolStripMenuItem.Size = new System.Drawing.Size(275, 22);
 			this.настройкиToolStripMenuItem.Text = "Настройки:";
 			// 
 			// отображатьПоверхОконToolStripMenuItem
@@ -446,7 +446,7 @@ namespace Catfish
 			// 
 			this.выходToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("выходToolStripMenuItem.Image")));
 			this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-			this.выходToolStripMenuItem.Size = new System.Drawing.Size(221, 22);
+			this.выходToolStripMenuItem.Size = new System.Drawing.Size(275, 22);
 			this.выходToolStripMenuItem.Text = "Выход.";
 			this.выходToolStripMenuItem.Click += new System.EventHandler(this.ВыходToolStripMenuItemClick);
 			// 
@@ -458,14 +458,14 @@ namespace Catfish
 									this.toolStripComboBox2});
 			this.toolStrip2.Location = new System.Drawing.Point(0, 25);
 			this.toolStrip2.Name = "toolStrip2";
-			this.toolStrip2.Size = new System.Drawing.Size(266, 25);
+			this.toolStrip2.Size = new System.Drawing.Size(266, 27);
 			this.toolStrip2.TabIndex = 4;
 			this.toolStrip2.Text = "toolStrip2";
 			// 
 			// toolStripComboBox1
 			// 
 			this.toolStripComboBox1.Name = "toolStripComboBox1";
-			this.toolStripComboBox1.Size = new System.Drawing.Size(121, 25);
+			this.toolStripComboBox1.Size = new System.Drawing.Size(121, 27);
 			this.toolStripComboBox1.ToolTipText = "Поиск по имени файла";
 			this.toolStripComboBox1.SelectedIndexChanged += new System.EventHandler(this.ToolStripComboBox1SelectedIndexChanged);
 			this.toolStripComboBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ToolStripComboBox1KeyPress);
@@ -473,12 +473,12 @@ namespace Catfish
 			// toolStripSeparator9
 			// 
 			this.toolStripSeparator9.Name = "toolStripSeparator9";
-			this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
+			this.toolStripSeparator9.Size = new System.Drawing.Size(6, 27);
 			// 
 			// toolStripComboBox2
 			// 
 			this.toolStripComboBox2.Name = "toolStripComboBox2";
-			this.toolStripComboBox2.Size = new System.Drawing.Size(121, 25);
+			this.toolStripComboBox2.Size = new System.Drawing.Size(121, 23);
 			this.toolStripComboBox2.ToolTipText = "Поиск по содержанию файла";
 			this.toolStripComboBox2.SelectedIndexChanged += new System.EventHandler(this.ToolStripComboBox2SelectedIndexChanged);
 			this.toolStripComboBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ToolStripComboBox2KeyPress);

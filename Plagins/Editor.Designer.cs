@@ -294,7 +294,7 @@ namespace Catfish
 			// 
 			this.отменитьToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("отменитьToolStripMenuItem.Image")));
 			this.отменитьToolStripMenuItem.Name = "отменитьToolStripMenuItem";
-			this.отменитьToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+			this.отменитьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.отменитьToolStripMenuItem.Text = "Отменить.";
 			this.отменитьToolStripMenuItem.Click += new System.EventHandler(this.ОтменитьToolStripMenuItemClick);
 			// 
@@ -302,20 +302,20 @@ namespace Catfish
 			// 
 			this.повторитьToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("повторитьToolStripMenuItem.Image")));
 			this.повторитьToolStripMenuItem.Name = "повторитьToolStripMenuItem";
-			this.повторитьToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+			this.повторитьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.повторитьToolStripMenuItem.Text = "Повторить.";
 			this.повторитьToolStripMenuItem.Click += new System.EventHandler(this.ПовторитьToolStripMenuItemClick);
 			// 
 			// toolStripSeparator3
 			// 
 			this.toolStripSeparator3.Name = "toolStripSeparator3";
-			this.toolStripSeparator3.Size = new System.Drawing.Size(139, 6);
+			this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
 			// 
 			// вырезатьToolStripMenuItem
 			// 
 			this.вырезатьToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("вырезатьToolStripMenuItem.Image")));
 			this.вырезатьToolStripMenuItem.Name = "вырезатьToolStripMenuItem";
-			this.вырезатьToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+			this.вырезатьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.вырезатьToolStripMenuItem.Text = "Вырезать.";
 			this.вырезатьToolStripMenuItem.Click += new System.EventHandler(this.ВырезатьToolStripMenuItemClick);
 			// 
@@ -323,7 +323,7 @@ namespace Catfish
 			// 
 			this.копироватьToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("копироватьToolStripMenuItem.Image")));
 			this.копироватьToolStripMenuItem.Name = "копироватьToolStripMenuItem";
-			this.копироватьToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+			this.копироватьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.копироватьToolStripMenuItem.Text = "Копировать.";
 			this.копироватьToolStripMenuItem.Click += new System.EventHandler(this.КопироватьToolStripMenuItemClick);
 			// 
@@ -331,14 +331,14 @@ namespace Catfish
 			// 
 			this.вставитьToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("вставитьToolStripMenuItem.Image")));
 			this.вставитьToolStripMenuItem.Name = "вставитьToolStripMenuItem";
-			this.вставитьToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+			this.вставитьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.вставитьToolStripMenuItem.Text = "Вставить.";
 			this.вставитьToolStripMenuItem.Click += new System.EventHandler(this.ВставитьToolStripMenuItemClick);
 			// 
 			// удалитьToolStripMenuItem
 			// 
 			this.удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
-			this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(142, 22);
+			this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.удалитьToolStripMenuItem.Text = "Удалить.";
 			this.удалитьToolStripMenuItem.Click += new System.EventHandler(this.УдалитьToolStripMenuItemClick);
 			// 
@@ -522,6 +522,7 @@ namespace Catfish
 			this.шрифтToolStripMenuItem.Name = "шрифтToolStripMenuItem";
 			this.шрифтToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.шрифтToolStripMenuItem.Text = "Шрифт";
+			this.шрифтToolStripMenuItem.Click += new System.EventHandler(this.ШрифтToolStripMenuItemClick);
 			// 
 			// цветToolStripMenuItem
 			// 
@@ -529,6 +530,7 @@ namespace Catfish
 			this.цветToolStripMenuItem.Name = "цветToolStripMenuItem";
 			this.цветToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.цветToolStripMenuItem.Text = "Цвет текста";
+			this.цветToolStripMenuItem.Click += new System.EventHandler(this.ЦветToolStripMenuItemClick);
 			// 
 			// цветФонаToolStripMenuItem
 			// 
@@ -536,6 +538,7 @@ namespace Catfish
 			this.цветФонаToolStripMenuItem.Name = "цветФонаToolStripMenuItem";
 			this.цветФонаToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.цветФонаToolStripMenuItem.Text = "Цвет фона";
+			this.цветФонаToolStripMenuItem.Click += new System.EventHandler(this.ЦветФонаToolStripMenuItemClick);
 			// 
 			// справкаToolStripMenuItem
 			// 
@@ -551,6 +554,7 @@ namespace Catfish
 			this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
 			this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
 			this.оПрограммеToolStripMenuItem.Text = "О программе.";
+			this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.ОПрограммеToolStripMenuItemClick);
 			// 
 			// statusStrip1
 			// 
@@ -632,7 +636,7 @@ namespace Catfish
 			this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton1.Name = "toolStripButton1";
 			this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-			this.toolStripButton1.Text = "toolStripButton1";
+			this.toolStripButton1.Text = "Открыть файл";
 			this.toolStripButton1.Click += new System.EventHandler(this.ToolStripButton1Click);
 			// 
 			// toolStripDropDownButton1
@@ -646,7 +650,7 @@ namespace Catfish
 			this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
 			this.toolStripDropDownButton1.Size = new System.Drawing.Size(29, 22);
-			this.toolStripDropDownButton1.Text = "toolStripDropDownButton1";
+			this.toolStripDropDownButton1.Text = "Открыть файл как...";
 			// 
 			// открытьФайлКакASCIIToolStripMenuItem
 			// 
@@ -676,7 +680,7 @@ namespace Catfish
 			this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton2.Name = "toolStripButton2";
 			this.toolStripButton2.Size = new System.Drawing.Size(23, 22);
-			this.toolStripButton2.Text = "toolStripButton2";
+			this.toolStripButton2.Text = "Сохранить файл.";
 			this.toolStripButton2.Click += new System.EventHandler(this.ToolStripButton2Click);
 			// 
 			// toolStripDropDownButton2
@@ -690,7 +694,7 @@ namespace Catfish
 			this.toolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
 			this.toolStripDropDownButton2.Size = new System.Drawing.Size(29, 22);
-			this.toolStripDropDownButton2.Text = "toolStripDropDownButton2";
+			this.toolStripDropDownButton2.Text = "Сохранить файл как...";
 			// 
 			// сохранитьФайлКакASCIIToolStripMenuItem
 			// 
@@ -725,7 +729,7 @@ namespace Catfish
 			this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton3.Name = "toolStripButton3";
 			this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
-			this.toolStripButton3.Text = "toolStripButton3";
+			this.toolStripButton3.Text = "Отменить.";
 			this.toolStripButton3.Click += new System.EventHandler(this.ToolStripButton3Click);
 			// 
 			// toolStripButton4
@@ -735,7 +739,7 @@ namespace Catfish
 			this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton4.Name = "toolStripButton4";
 			this.toolStripButton4.Size = new System.Drawing.Size(23, 22);
-			this.toolStripButton4.Text = "toolStripButton4";
+			this.toolStripButton4.Text = "Повторить";
 			this.toolStripButton4.Click += new System.EventHandler(this.ToolStripButton4Click);
 			// 
 			// toolStripSeparator4
@@ -750,7 +754,7 @@ namespace Catfish
 			this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton5.Name = "toolStripButton5";
 			this.toolStripButton5.Size = new System.Drawing.Size(23, 22);
-			this.toolStripButton5.Text = "toolStripButton5";
+			this.toolStripButton5.Text = "Вырезать";
 			this.toolStripButton5.Click += new System.EventHandler(this.ToolStripButton5Click);
 			// 
 			// toolStripButton6
@@ -760,7 +764,7 @@ namespace Catfish
 			this.toolStripButton6.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton6.Name = "toolStripButton6";
 			this.toolStripButton6.Size = new System.Drawing.Size(23, 22);
-			this.toolStripButton6.Text = "toolStripButton6";
+			this.toolStripButton6.Text = "Копировать";
 			this.toolStripButton6.Click += new System.EventHandler(this.ToolStripButton6Click);
 			// 
 			// toolStripButton7
@@ -770,7 +774,7 @@ namespace Catfish
 			this.toolStripButton7.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton7.Name = "toolStripButton7";
 			this.toolStripButton7.Size = new System.Drawing.Size(23, 22);
-			this.toolStripButton7.Text = "toolStripButton7";
+			this.toolStripButton7.Text = "Вставить";
 			this.toolStripButton7.Click += new System.EventHandler(this.ToolStripButton7Click);
 			// 
 			// toolStripSeparator5
@@ -785,7 +789,7 @@ namespace Catfish
 			this.toolStripButton8.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton8.Name = "toolStripButton8";
 			this.toolStripButton8.Size = new System.Drawing.Size(23, 22);
-			this.toolStripButton8.Text = "toolStripButton8";
+			this.toolStripButton8.Text = "Выполнить";
 			this.toolStripButton8.Click += new System.EventHandler(this.ToolStripButton8Click);
 			// 
 			// toolStripSeparator9
@@ -800,7 +804,7 @@ namespace Catfish
 			this.toolStripButton9.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton9.Name = "toolStripButton9";
 			this.toolStripButton9.Size = new System.Drawing.Size(23, 22);
-			this.toolStripButton9.Text = "toolStripButton9";
+			this.toolStripButton9.Text = "Denwer Run";
 			this.toolStripButton9.Click += new System.EventHandler(this.ToolStripButton9Click);
 			// 
 			// toolStripButton10
@@ -810,7 +814,7 @@ namespace Catfish
 			this.toolStripButton10.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton10.Name = "toolStripButton10";
 			this.toolStripButton10.Size = new System.Drawing.Size(23, 22);
-			this.toolStripButton10.Text = "toolStripButton10";
+			this.toolStripButton10.Text = "Denwer Restart";
 			this.toolStripButton10.Click += new System.EventHandler(this.ToolStripButton10Click);
 			// 
 			// toolStripButton11
@@ -820,7 +824,7 @@ namespace Catfish
 			this.toolStripButton11.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton11.Name = "toolStripButton11";
 			this.toolStripButton11.Size = new System.Drawing.Size(23, 22);
-			this.toolStripButton11.Text = "toolStripButton11";
+			this.toolStripButton11.Text = "Denwer Stop";
 			this.toolStripButton11.Click += new System.EventHandler(this.ToolStripButton11Click);
 			// 
 			// toolStripButton12
@@ -830,7 +834,7 @@ namespace Catfish
 			this.toolStripButton12.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton12.Name = "toolStripButton12";
 			this.toolStripButton12.Size = new System.Drawing.Size(23, 22);
-			this.toolStripButton12.Text = "toolStripButton12";
+			this.toolStripButton12.Text = "Denwer phpMyAdmin";
 			this.toolStripButton12.Click += new System.EventHandler(this.ToolStripButton12Click);
 			// 
 			// toolStripSeparator10
@@ -845,7 +849,7 @@ namespace Catfish
 			this.toolStripButton13.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton13.Name = "toolStripButton13";
 			this.toolStripButton13.Size = new System.Drawing.Size(23, 22);
-			this.toolStripButton13.Text = "toolStripButton13";
+			this.toolStripButton13.Text = "Код цвета";
 			this.toolStripButton13.Click += new System.EventHandler(this.ToolStripButton13Click);
 			// 
 			// toolStripSeparator11
@@ -860,7 +864,8 @@ namespace Catfish
 			this.toolStripButton14.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton14.Name = "toolStripButton14";
 			this.toolStripButton14.Size = new System.Drawing.Size(23, 22);
-			this.toolStripButton14.Text = "toolStripButton14";
+			this.toolStripButton14.Text = "Шрифт";
+			this.toolStripButton14.Click += new System.EventHandler(this.ToolStripButton14Click);
 			// 
 			// toolStripButton15
 			// 
@@ -869,7 +874,8 @@ namespace Catfish
 			this.toolStripButton15.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton15.Name = "toolStripButton15";
 			this.toolStripButton15.Size = new System.Drawing.Size(23, 22);
-			this.toolStripButton15.Text = "toolStripButton15";
+			this.toolStripButton15.Text = "Цвет текста";
+			this.toolStripButton15.Click += new System.EventHandler(this.ToolStripButton15Click);
 			// 
 			// toolStripButton16
 			// 
@@ -878,7 +884,8 @@ namespace Catfish
 			this.toolStripButton16.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton16.Name = "toolStripButton16";
 			this.toolStripButton16.Size = new System.Drawing.Size(23, 22);
-			this.toolStripButton16.Text = "toolStripButton16";
+			this.toolStripButton16.Text = "Цвет фона";
+			this.toolStripButton16.Click += new System.EventHandler(this.ToolStripButton16Click);
 			// 
 			// toolStripSeparator12
 			// 
@@ -889,6 +896,8 @@ namespace Catfish
 			// 
 			this.toolStripComboBox1.Name = "toolStripComboBox1";
 			this.toolStripComboBox1.Size = new System.Drawing.Size(121, 25);
+			this.toolStripComboBox1.ToolTipText = "Поиск";
+			this.toolStripComboBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ToolStripComboBox1KeyPress);
 			// 
 			// toolStripButton17
 			// 
@@ -897,7 +906,8 @@ namespace Catfish
 			this.toolStripButton17.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton17.Name = "toolStripButton17";
 			this.toolStripButton17.Size = new System.Drawing.Size(23, 22);
-			this.toolStripButton17.Text = "toolStripButton17";
+			this.toolStripButton17.Text = "Поиск";
+			this.toolStripButton17.Click += new System.EventHandler(this.ToolStripButton17Click);
 			// 
 			// toolStripSeparator14
 			// 
@@ -915,7 +925,7 @@ namespace Catfish
 			this.toolStripDropDownButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripDropDownButton3.Name = "toolStripDropDownButton3";
 			this.toolStripDropDownButton3.Size = new System.Drawing.Size(29, 22);
-			this.toolStripDropDownButton3.Text = "toolStripDropDownButton3";
+			this.toolStripDropDownButton3.Text = "Кодировки";
 			// 
 			// aSCIIToolStripMenuItem3
 			// 
@@ -947,7 +957,8 @@ namespace Catfish
 			this.toolStripButton19.ImageTransparentColor = System.Drawing.Color.Magenta;
 			this.toolStripButton19.Name = "toolStripButton19";
 			this.toolStripButton19.Size = new System.Drawing.Size(23, 22);
-			this.toolStripButton19.Text = "toolStripButton19";
+			this.toolStripButton19.Text = "О программе";
+			this.toolStripButton19.Click += new System.EventHandler(this.ToolStripButton19Click);
 			// 
 			// richTextBox1
 			// 
@@ -1076,6 +1087,10 @@ namespace Catfish
 			// openFileDialog1
 			// 
 			this.openFileDialog1.Filter = resources.GetString("openFileDialog1.Filter");
+			// 
+			// fontDialog1
+			// 
+			this.fontDialog1.Color = System.Drawing.SystemColors.ControlText;
 			// 
 			// Editor
 			// 

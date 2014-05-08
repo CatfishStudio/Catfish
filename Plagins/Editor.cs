@@ -32,6 +32,9 @@ namespace Catfish
 		}
 		
 		private bool _listFocus = false;
+		private int _findIndex = 0;
+		private int _findLast = 0;
+		private String _findText = "";
 		
 		/* Загрузка списка операторов */
 		private void loadOperators()
@@ -108,7 +111,9 @@ namespace Catfish
 						textBox1.Left = 0; textBox1.Top = 0;
 						listBox1.Left = 0; listBox1.Top = 23;
 						panel1.Left = richTextBox1.GetPositionFromCharIndex(richTextBox1.SelectionStart).X - 200;
-						panel1.Top = richTextBox1.GetPositionFromCharIndex(richTextBox1.SelectionStart).Y + 50;
+						if(toolStrip1.Visible)
+							panel1.Top = richTextBox1.GetPositionFromCharIndex(richTextBox1.SelectionStart).Y + 50;
+						else panel1.Top = richTextBox1.GetPositionFromCharIndex(richTextBox1.SelectionStart).Y + 25;
 						textBox1.RightToLeft = RightToLeft.Yes;
 						panel1.Visible = true;
 						textBox1.Focus();
@@ -116,7 +121,9 @@ namespace Catfish
 						textBox1.Left = 0; textBox1.Top = 0;
 						listBox1.Left = 0; listBox1.Top = 23;
 						panel1.Left = richTextBox1.GetPositionFromCharIndex(richTextBox1.SelectionStart).X;
-						panel1.Top = richTextBox1.GetPositionFromCharIndex(richTextBox1.SelectionStart).Y + 50;
+						if(toolStrip1.Visible)
+							panel1.Top = richTextBox1.GetPositionFromCharIndex(richTextBox1.SelectionStart).Y + 50;
+						else panel1.Top = richTextBox1.GetPositionFromCharIndex(richTextBox1.SelectionStart).Y + 25;
 						textBox1.RightToLeft = RightToLeft.No;
 						panel1.Visible = true;
 						textBox1.Focus();
@@ -857,6 +864,112 @@ namespace Catfish
 		void ToolStripButton13Click(object sender, EventArgs e)
 		{
 			codeColor();
+		}
+		
+		/* Настройки ---------------------------------------------*/
+		void ШрифтToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			if(fontDialog1.ShowDialog() == DialogResult.OK) richTextBox1.Font = fontDialog1.Font;
+		}
+		
+		void ToolStripButton14Click(object sender, EventArgs e)
+		{
+			if(fontDialog1.ShowDialog() == DialogResult.OK) richTextBox1.Font = fontDialog1.Font;			
+		}
+		
+		void ЦветToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			if(colorDialog1.ShowDialog() == DialogResult.OK){
+				richTextBox1.ForeColor = colorDialog1.Color;
+				textBox1.ForeColor = colorDialog1.Color;
+				listBox1.ForeColor = colorDialog1.Color;
+			}
+		}
+		
+		void ToolStripButton15Click(object sender, EventArgs e)
+		{
+			if(colorDialog1.ShowDialog() == DialogResult.OK){
+				richTextBox1.ForeColor = colorDialog1.Color;
+				textBox1.ForeColor = colorDialog1.Color;
+				listBox1.ForeColor = colorDialog1.Color;
+			}
+		}
+		
+		void ЦветФонаToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			if(colorDialog1.ShowDialog() == DialogResult.OK){
+				richTextBox1.BackColor = colorDialog1.Color;
+				textBox1.BackColor = colorDialog1.Color;
+				listBox1.BackColor = colorDialog1.Color;
+			}
+		}
+		
+		void ToolStripButton16Click(object sender, EventArgs e)
+		{
+			if(colorDialog1.ShowDialog() == DialogResult.OK){
+				richTextBox1.BackColor = colorDialog1.Color;
+				textBox1.BackColor = colorDialog1.Color;
+				listBox1.BackColor = colorDialog1.Color;
+			}
+		}
+		
+		/* Поиск по тексту */
+		void findText(ToolStripComboBox _cbox)
+		{
+			try{
+				bool resolution = true;
+				for(int k = 0; k < _cbox.Items.Count; k++)
+					if(_cbox.Items[k].ToString() == _cbox.Text) resolution = false;
+				if(resolution) _cbox.Items.Add(_cbox.Text);
+				if(_findText != _cbox.Text){
+					_findIndex = 0;
+					_findLast = 0;
+					_findText = _cbox.Text;
+				}
+				if(richTextBox1.Find(_cbox.Text, _findIndex, richTextBox1.TextLength - 1, RichTextBoxFinds.None) >= 0){
+					richTextBox1.Select();
+					_findIndex = richTextBox1.SelectionStart + richTextBox1.SelectionLength;
+					if(_findLast == richTextBox1.SelectionStart){
+						MessageBox.Show("Поиск завершен.", "Сообщение:", MessageBoxButtons.OK);
+						_findIndex = 0;
+						_findLast = 0;
+						_findText = _cbox.Text;
+					}else{
+						_findLast = richTextBox1.SelectionStart;
+					}
+				}else{
+					MessageBox.Show("Поиск завершен.", "Сообщение:", MessageBoxButtons.OK);
+					_findIndex = 0;
+					_findLast = 0;
+					_findText = _cbox.Text;
+				}
+					
+			}catch{
+				MessageBox.Show("Во время поиска произошла ошибка!", "Ошибка!!!", MessageBoxButtons.OK);	
+			}
+		}
+		
+		void ToolStripComboBox1KeyPress(object sender, KeyPressEventArgs e)
+		{
+			if(e.KeyChar.GetHashCode().ToString() == "851981"){
+				findText(toolStripComboBox1);
+			}
+		}
+		
+		void ToolStripButton17Click(object sender, EventArgs e)
+		{
+			findText(toolStripComboBox1);
+		}
+		
+		/* О программе */
+		void ОПрограммеToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			MessageBox.Show("Наименование: Catfish Editor" + System.Environment.NewLine + "Версия: 1.0" + System.Environment.NewLine + "Автор: Сомов евгений Павлович" + System.Environment.NewLine + "©  Somov Evgeniy, 2014", "О программе", MessageBoxButtons.OK);
+		}
+		
+		void ToolStripButton19Click(object sender, EventArgs e)
+		{
+			MessageBox.Show("Наименование: Catfish Editor" + System.Environment.NewLine + "Версия: 1.0" + System.Environment.NewLine + "Автор: Сомов евгений Павлович" + System.Environment.NewLine + "©  Somov Evgeniy, 2014", "О программе", MessageBoxButtons.OK);			
 		}
 	}
 }
