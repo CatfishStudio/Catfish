@@ -89,10 +89,11 @@ namespace Catfish
 			// 
 			// richTextBox1
 			// 
+			this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.richTextBox1.Location = new System.Drawing.Point(3, 3);
 			this.richTextBox1.Name = "richTextBox1";
-			this.richTextBox1.Size = new System.Drawing.Size(439, 238);
+			this.richTextBox1.Size = new System.Drawing.Size(437, 236);
 			this.richTextBox1.TabIndex = 0;
 			this.richTextBox1.Text = "";
 			// 
@@ -131,6 +132,7 @@ namespace Catfish
 			// 
 			// tabPage1
 			// 
+			this.tabPage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
 			this.tabPage1.Controls.Add(this.richTextBox1);
 			this.tabPage1.Location = new System.Drawing.Point(4, 22);
 			this.tabPage1.Name = "tabPage1";
@@ -177,9 +179,9 @@ namespace Catfish
 		private System.Windows.Forms.RichTextBox richTextBox1;
 		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.Button button2;
-		private System.Windows.Forms.ComboBox comboBox1;
+		public System.Windows.Forms.ComboBox comboBox1;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.TextBox textBox1;
+		public System.Windows.Forms.TextBox textBox1;
 	}
 }

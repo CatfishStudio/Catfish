@@ -973,5 +973,16 @@ namespace Catfish
 		{
 			MessageBox.Show("Наименование: Catfish Editor" + System.Environment.NewLine + "Версия: 1.0" + System.Environment.NewLine + "Автор: Сомов евгений Павлович" + System.Environment.NewLine + "©  Somov Evgeniy, 2014", "О программе", MessageBoxButtons.OK);			
 		}
+		
+		/* Выделить всё */
+		void ВыделитьВсёToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			richTextBox1.SelectAll();
+		}
+		
+		void ВыделитьВсёToolStripMenuItem1Click(object sender, EventArgs e)
+		{
+			richTextBox1.SelectAll();
+		}
 	}
 }

@@ -594,14 +594,14 @@ namespace Catfish
 									this.toolStripComboBox2});
 			this.toolStrip2.Location = new System.Drawing.Point(0, 25);
 			this.toolStrip2.Name = "toolStrip2";
-			this.toolStrip2.Size = new System.Drawing.Size(269, 27);
+			this.toolStrip2.Size = new System.Drawing.Size(269, 25);
 			this.toolStrip2.TabIndex = 4;
 			this.toolStrip2.Text = "toolStrip2";
 			// 
 			// toolStripComboBox1
 			// 
 			this.toolStripComboBox1.Name = "toolStripComboBox1";
-			this.toolStripComboBox1.Size = new System.Drawing.Size(121, 27);
+			this.toolStripComboBox1.Size = new System.Drawing.Size(121, 25);
 			this.toolStripComboBox1.ToolTipText = "Поиск по имени файла";
 			this.toolStripComboBox1.SelectedIndexChanged += new System.EventHandler(this.ToolStripComboBox1SelectedIndexChanged);
 			this.toolStripComboBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ToolStripComboBox1KeyPress);
@@ -609,12 +609,12 @@ namespace Catfish
 			// toolStripSeparator9
 			// 
 			this.toolStripSeparator9.Name = "toolStripSeparator9";
-			this.toolStripSeparator9.Size = new System.Drawing.Size(6, 27);
+			this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
 			// 
 			// toolStripComboBox2
 			// 
 			this.toolStripComboBox2.Name = "toolStripComboBox2";
-			this.toolStripComboBox2.Size = new System.Drawing.Size(121, 23);
+			this.toolStripComboBox2.Size = new System.Drawing.Size(121, 25);
 			this.toolStripComboBox2.ToolTipText = "Поиск по содержанию файла";
 			this.toolStripComboBox2.SelectedIndexChanged += new System.EventHandler(this.ToolStripComboBox2SelectedIndexChanged);
 			this.toolStripComboBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ToolStripComboBox2KeyPress);

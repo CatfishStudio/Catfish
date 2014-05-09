@@ -66,6 +66,7 @@ namespace Catfish
 			this.button1.TabIndex = 2;
 			this.button1.Text = "Сохранить.";
 			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.Button1Click);
 			// 
 			// button2
 			// 
@@ -75,6 +76,7 @@ namespace Catfish
 			this.button2.TabIndex = 3;
 			this.button2.Text = "Отмена.";
 			this.button2.UseVisualStyleBackColor = true;
+			this.button2.Click += new System.EventHandler(this.Button2Click);
 			// 
 			// Folder
 			// 
@@ -90,12 +92,13 @@ namespace Catfish
 			this.MaximizeBox = false;
 			this.Name = "Folder";
 			this.Text = "Папка";
+			this.Load += new System.EventHandler(this.FolderLoad);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
 		private System.Windows.Forms.Button button2;
 		private System.Windows.Forms.Button button1;
-		private System.Windows.Forms.TextBox textBox1;
+		public System.Windows.Forms.TextBox textBox1;
 		private System.Windows.Forms.Label label1;
 	}
 }

@@ -212,7 +212,7 @@ namespace Catfish
 		
 		
 		/* поиск по ключу */
-		void keySearch(String _sqlQuery, ToolStripComboBox _cbox)
+		public void KeySearch(String _sqlQuery, ToolStripComboBox _cbox)
 		{
 			bool resolution = true;
 			try{
@@ -251,31 +251,31 @@ namespace Catfish
 		void ToolStripComboBox1KeyPress(object sender, KeyPressEventArgs e)
 		{
 			if(e.KeyChar.GetHashCode().ToString() == "851981"){
-				keySearch("SELECT ДатаПоследнегоСохранения, ПапкаИдентификатор, СодержаниеФайла, Строка, ТипОбъекта, ФайлВПапке, ФайлИдентификатор FROM Хранилище WHERE ФайлИдентификатор LIKE '%" + toolStripComboBox1.Text + "%' ORDER BY ФайлИдентификатор ASC", toolStripComboBox1);
+				KeySearch("SELECT ДатаПоследнегоСохранения, ПапкаИдентификатор, СодержаниеФайла, Строка, ТипОбъекта, ФайлВПапке, ФайлИдентификатор FROM Хранилище WHERE ФайлИдентификатор LIKE '%" + toolStripComboBox1.Text + "%' ORDER BY ФайлИдентификатор ASC", toolStripComboBox1);
 			}
 		}
 		
 		void ToolStripComboBox1SelectedIndexChanged(object sender, EventArgs e)
 		{
-			keySearch("SELECT ДатаПоследнегоСохранения, ПапкаИдентификатор, СодержаниеФайла, Строка, ТипОбъекта, ФайлВПапке, ФайлИдентификатор FROM Хранилище WHERE ФайлИдентификатор LIKE '%" + toolStripComboBox1.Text + "%' ORDER BY ФайлИдентификатор ASC", toolStripComboBox1);
+			KeySearch("SELECT ДатаПоследнегоСохранения, ПапкаИдентификатор, СодержаниеФайла, Строка, ТипОбъекта, ФайлВПапке, ФайлИдентификатор FROM Хранилище WHERE ФайлИдентификатор LIKE '%" + toolStripComboBox1.Text + "%' ORDER BY ФайлИдентификатор ASC", toolStripComboBox1);
 		}
 		
 		/*Тип поиска экспертная система */
 		void ToolStripComboBox2KeyPress(object sender, KeyPressEventArgs e)
 		{
 			if(e.KeyChar.GetHashCode().ToString() == "851981"){
-				keySearch("SELECT ДатаПоследнегоСохранения, ПапкаИдентификатор, СодержаниеФайла, Строка, ТипОбъекта, ФайлВПапке, ФайлИдентификатор FROM Хранилище WHERE СодержаниеФайла LIKE '%" + toolStripComboBox2.Text + "%' ORDER BY ФайлИдентификатор ASC", toolStripComboBox2);
+				KeySearch("SELECT ДатаПоследнегоСохранения, ПапкаИдентификатор, СодержаниеФайла, Строка, ТипОбъекта, ФайлВПапке, ФайлИдентификатор FROM Хранилище WHERE СодержаниеФайла LIKE '%" + toolStripComboBox2.Text + "%' ORDER BY ФайлИдентификатор ASC", toolStripComboBox2);
 			}
 		}
 		
 		void ToolStripComboBox2SelectedIndexChanged(object sender, EventArgs e)
 		{
-			keySearch("SELECT ДатаПоследнегоСохранения, ПапкаИдентификатор, СодержаниеФайла, Строка, ТипОбъекта, ФайлВПапке, ФайлИдентификатор FROM Хранилище WHERE СодержаниеФайла LIKE '%" + toolStripComboBox2.Text + "%' ORDER BY ФайлИдентификатор ASC", toolStripComboBox2);
+			KeySearch("SELECT ДатаПоследнегоСохранения, ПапкаИдентификатор, СодержаниеФайла, Строка, ТипОбъекта, ФайлВПапке, ФайлИдентификатор FROM Хранилище WHERE СодержаниеФайла LIKE '%" + toolStripComboBox2.Text + "%' ORDER BY ФайлИдентификатор ASC", toolStripComboBox2);
 		}
 		
 		
 		/* Показать всё содержимое */
-		void showAll()
+		public void ShowAll()
 		{
 			try{
 				_localDataSet.Clear();
@@ -325,22 +325,26 @@ namespace Catfish
 		
 		void ПоказатьToolStripMenuItemClick(object sender, EventArgs e)
 		{
-			showAll();
+			ShowAll();
 		}
 		
 		void ToolStripButton3Click(object sender, EventArgs e)
 		{
-			showAll();
+			ShowAll();
 		}
 		
 		/* Создать папку */
 		void openFolder(bool _new){
 			Folder fFolder = new Folder();
 			if(this.TopMost) fFolder.TopMost = true;
-			if(_new) fFolder.Text = "Новая папка";
-			else fFolder.Text = toolStripStatusLabel3.Text;
+			if(_new){
+				fFolder.Text = "Новая папка";
+			}else{
+				fFolder.Text = toolStripStatusLabel3.Text; // имя папки
+				//fFolder.textBox1.Text = toolStripStatusLabel3.Text; // имя папки
+			}
 			fFolder.mForm = this;
-			fFolder.Show();	
+			fFolder.Show();
 		}
 		
 		void ToolStripButton1Click(object sender, EventArgs e)
@@ -359,8 +363,14 @@ namespace Catfish
 		{
 			Element fFile = new Element();
 			if(this.TopMost) fFile.TopMost = true;
-			if(_new) fFile.Text = "Новый файл";
-			else fFile.Text = toolStripStatusLabel5.Text;
+			if(_new){
+				fFile.Text = "Новый файл";
+				fFile.comboBox1.Text = toolStripStatusLabel3.Text; // имя папки
+			}else{
+				fFile.Text = toolStripStatusLabel5.Text; // имя файла
+				//fFile.textBox1.Text = toolStripStatusLabel5.Text; // имя файла
+				fFile.comboBox1.Text = toolStripStatusLabel3.Text; // имя папки
+			}
 			fFile.mForm = this;
 			fFile.Show();
 		}
