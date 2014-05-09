@@ -98,11 +98,50 @@ namespace Catfish
 		{
 			openFolder(true);
 		}
-				
+		
+		/* Редактировать папку */		
 		void РедактироватьПапкуToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			openFolder(false);
 		}
+		
+		/* Удалить папку */
+		void deleteFolder(String _folderName)
+		{
+			
+			if(MessageBox.Show("Удалить папку [" + _folderName + "] и всё её содержимое?","Вопрос:", MessageBoxButtons.YesNo) == DialogResult.Yes){
+				OleDbServerShort _localClientShort = new OleDbServerShort(Config.PathBase);
+				/* Удаление содержимого */
+				_localClientShort.SqlCommand = "DELETE FROM Хранилище WHERE (ФайлВПапке = '" + _folderName + "')";
+				if(_localClientShort.ExecuteNonQuery()){
+					/* удаление самой папки */
+					_localClientShort.SqlCommand = "DELETE FROM Хранилище WHERE (ПапкаИдентификатор = '" + _folderName + "')";
+					if(_localClientShort.ExecuteNonQuery()){
+						ShowAll();
+						MessageBox.Show("Папка успешно удалена!","Сообщение:",MessageBoxButtons.OK);
+					}else{
+						MessageBox.Show("Ошибка удаления папки!","Сообщение:",MessageBoxButtons.OK);
+					}
+				}else MessageBox.Show("Ошибка удаления содержимого в папке!","Сообщение:",MessageBoxButtons.OK);
+			}
+		}
+		
+		void УдалитьПапкуToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			deleteFolder(toolStripStatusLabel3.Text);
+		}
+		
+		
+		/* Удаление папки горячей клавишей */
+		
+		void TreeView1KeyDown(object sender, KeyEventArgs e)
+		{
+			if(e.KeyData == Keys.Delete){
+				if(toolStripStatusLabel5.Text == "...") deleteFolder(toolStripStatusLabel3.Text);
+				else deleteFile(toolStripStatusLabel5.Text);
+			}
+		}
+		
 		
 		/* Создать файл */
 		void СоздатьЗаписьToolStripMenuItemClick(object sender, EventArgs e)
@@ -115,9 +154,30 @@ namespace Catfish
 			openFile(true);
 		}
 		
+		/* Редактировать файл */
 		void ОткрытьФайлToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			openFile(false);
+		}
+		
+		/* Удалить файл */
+		void deleteFile(String _folderName)
+		{
+			if(MessageBox.Show("Удалить файл [" + _folderName + "] ?","Вопрос:", MessageBoxButtons.YesNo) == DialogResult.Yes){
+				OleDbServerShort _localClientShort = new OleDbServerShort(Config.PathBase);
+				_localClientShort.SqlCommand = "DELETE FROM Хранилище WHERE (ФайлИдентификатор = '" + _folderName + "')";
+				if(_localClientShort.ExecuteNonQuery()){
+					ShowAll();
+					MessageBox.Show("Файл успешно удален!","Сообщение:",MessageBoxButtons.OK);
+				}else{
+					MessageBox.Show("Ошибка удаления файла!","Сообщение:",MessageBoxButtons.OK);
+				}
+			}
+		}
+		
+		void УдалитьФайлToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			deleteFile(toolStripStatusLabel5.Text);
 		}
 		
 		/* Редактор */
@@ -142,26 +202,36 @@ namespace Catfish
 			if(_type == "Папка:"){
 				создатьПапкуToolStripMenuItem1.Visible = true;
 				редактироватьПапкуToolStripMenuItem.Visible = true;
+				удалитьПапкуToolStripMenuItem.Visible = true;
 				создатьФайлToolStripMenuItem.Visible = true;
 				открытьФайлToolStripMenuItem.Visible = false;
+				удалитьФайлToolStripMenuItem.Visible = false;
 				toolStripButton5.Enabled = false;
 				toolStripButton4.Enabled = true;
 			}
 			if(_type == "Файл:"){
 				создатьФайлToolStripMenuItem.Visible = true;
 				открытьФайлToolStripMenuItem.Visible = true;
+				удалитьФайлToolStripMenuItem.Visible = true;
 				создатьПапкуToolStripMenuItem1.Visible = true;
 				редактироватьПапкуToolStripMenuItem.Visible = false;
+				удалитьПапкуToolStripMenuItem.Visible = false;
 				toolStripButton5.Enabled = true;
 				toolStripButton4.Enabled = false;
 			}
 			if(_type == ""){
 				создатьПапкуToolStripMenuItem1.Visible = true;
 				редактироватьПапкуToolStripMenuItem.Visible = false;
+				удалитьПапкуToolStripMenuItem.Visible = false;
 				создатьФайлToolStripMenuItem.Visible = true;
 				открытьФайлToolStripMenuItem.Visible = false;
+				удалитьФайлToolStripMenuItem.Visible = false;
 				toolStripButton5.Enabled = false;
 				toolStripButton4.Enabled = false;
+				toolStripStatusLabel2.Text = "Папка:";
+				toolStripStatusLabel3.Text = "...";
+				toolStripStatusLabel4.Text = "Файл:";
+				toolStripStatusLabel5.Text = "...";
 			}
 		}
 		
@@ -435,6 +505,8 @@ namespace Catfish
 		{
 			Application.Exit();
 		}
+		
+		
 		
 		
 	}

@@ -45,26 +45,30 @@ namespace Catfish
 		void Button1Click(object sender, EventArgs e)
 		{
 			if(this.Text == "Новая папка"){
-				try{
-					/* Сохраняем новые данные */
-					DataRow _newRow = _localDataSet.Tables["Хранилище"].NewRow();
-					_newRow["ТипОбъекта"] = "Группа";
-					_newRow["ПапкаИдентификатор"] = textBox1.Text;
-					_newRow["СодержаниеФайла"] = "";
-					_newRow["ДатаПоследнегоСохранения"] = DateTime.Today;
-					_newRow["ФайлИдентификатор"] = "";
-					_newRow["ФайлВПапке"] = "";
-					_localDataSet.Tables["Хранилище"].Rows.Add(_newRow);
-					_localClient.ExecuteUpdate(_localDataSet, "Хранилище");
+				/* Сохраняем новые данные */
+				DataRow _newRow = _localDataSet.Tables["Хранилище"].NewRow();
+				_newRow["ТипОбъекта"] = "Группа";
+				_newRow["ПапкаИдентификатор"] = textBox1.Text;
+				_newRow["СодержаниеФайла"] = "";
+				_newRow["ДатаПоследнегоСохранения"] = DateTime.Today;
+				_newRow["ФайлИдентификатор"] = "";
+				_newRow["ФайлВПапке"] = "";
+				_localDataSet.Tables["Хранилище"].Rows.Add(_newRow);
+				if(_localClient.ExecuteUpdate(_localDataSet, "Хранилище")){
 					MessageBox.Show("Сохранение прошло успешно!","Сообщение:",MessageBoxButtons.OK);
-					mForm.ShowAll();
 					Close();
-				}catch{
-					MessageBox.Show("Ошибка сохранения!","Сообщение:",MessageBoxButtons.OK);
-				}
-			}else{
+					mForm.ShowAll();
+				}else MessageBox.Show("Ошибка сохранения!","Сообщение:",MessageBoxButtons.OK);
 				
-				mForm.ShowAll();
+			}else{
+				/* Изменение существующей записи */
+				_localDataSet.Tables["Хранилище"].Rows[0]["ПапкаИдентификатор"] = textBox1.Text;
+				if(_localClient.ExecuteUpdate(_localDataSet, "Хранилище")){
+					MessageBox.Show("Сохранение прошло успешно!","Сообщение:",MessageBoxButtons.OK);
+					Close();
+					mForm.ShowAll();
+				}else MessageBox.Show("Ошибка сохранения!","Сообщение:",MessageBoxButtons.OK);
+				
 			}
 		}
 		

@@ -62,9 +62,11 @@ namespace Catfish
 			this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
 			this.создатьПапкуToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
 			this.редактироватьПапкуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.удалитьПапкуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
 			this.создатьФайлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.открытьФайлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.удалитьФайлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.imageList1 = new System.Windows.Forms.ImageList(this.components);
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -315,17 +317,20 @@ namespace Catfish
 			this.treeView1.Size = new System.Drawing.Size(263, 196);
 			this.treeView1.TabIndex = 1;
 			this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TreeView1AfterSelect);
+			this.treeView1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TreeView1KeyDown);
 			// 
 			// contextMenuStrip2
 			// 
 			this.contextMenuStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
 									this.создатьПапкуToolStripMenuItem1,
 									this.редактироватьПапкуToolStripMenuItem,
+									this.удалитьПапкуToolStripMenuItem,
 									this.toolStripSeparator11,
 									this.создатьФайлToolStripMenuItem,
-									this.открытьФайлToolStripMenuItem});
+									this.открытьФайлToolStripMenuItem,
+									this.удалитьФайлToolStripMenuItem});
 			this.contextMenuStrip2.Name = "contextMenuStrip2";
-			this.contextMenuStrip2.Size = new System.Drawing.Size(190, 98);
+			this.contextMenuStrip2.Size = new System.Drawing.Size(190, 142);
 			this.contextMenuStrip2.Opening += new System.ComponentModel.CancelEventHandler(this.ContextMenuStrip2Opening);
 			// 
 			// создатьПапкуToolStripMenuItem1
@@ -345,6 +350,15 @@ namespace Catfish
 			this.редактироватьПапкуToolStripMenuItem.Text = "Редактировать папку";
 			this.редактироватьПапкуToolStripMenuItem.Visible = false;
 			this.редактироватьПапкуToolStripMenuItem.Click += new System.EventHandler(this.РедактироватьПапкуToolStripMenuItemClick);
+			// 
+			// удалитьПапкуToolStripMenuItem
+			// 
+			this.удалитьПапкуToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("удалитьПапкуToolStripMenuItem.Image")));
+			this.удалитьПапкуToolStripMenuItem.Name = "удалитьПапкуToolStripMenuItem";
+			this.удалитьПапкуToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+			this.удалитьПапкуToolStripMenuItem.Text = "Удалить папку";
+			this.удалитьПапкуToolStripMenuItem.Visible = false;
+			this.удалитьПапкуToolStripMenuItem.Click += new System.EventHandler(this.УдалитьПапкуToolStripMenuItemClick);
 			// 
 			// toolStripSeparator11
 			// 
@@ -368,6 +382,15 @@ namespace Catfish
 			this.открытьФайлToolStripMenuItem.Text = "Открыть файл";
 			this.открытьФайлToolStripMenuItem.Visible = false;
 			this.открытьФайлToolStripMenuItem.Click += new System.EventHandler(this.ОткрытьФайлToolStripMenuItemClick);
+			// 
+			// удалитьФайлToolStripMenuItem
+			// 
+			this.удалитьФайлToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("удалитьФайлToolStripMenuItem.Image")));
+			this.удалитьФайлToolStripMenuItem.Name = "удалитьФайлToolStripMenuItem";
+			this.удалитьФайлToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+			this.удалитьФайлToolStripMenuItem.Text = "Удалить файл";
+			this.удалитьФайлToolStripMenuItem.Visible = false;
+			this.удалитьФайлToolStripMenuItem.Click += new System.EventHandler(this.УдалитьФайлToolStripMenuItemClick);
 			// 
 			// imageList1
 			// 
@@ -594,14 +617,14 @@ namespace Catfish
 									this.toolStripComboBox2});
 			this.toolStrip2.Location = new System.Drawing.Point(0, 25);
 			this.toolStrip2.Name = "toolStrip2";
-			this.toolStrip2.Size = new System.Drawing.Size(269, 25);
+			this.toolStrip2.Size = new System.Drawing.Size(269, 27);
 			this.toolStrip2.TabIndex = 4;
 			this.toolStrip2.Text = "toolStrip2";
 			// 
 			// toolStripComboBox1
 			// 
 			this.toolStripComboBox1.Name = "toolStripComboBox1";
-			this.toolStripComboBox1.Size = new System.Drawing.Size(121, 25);
+			this.toolStripComboBox1.Size = new System.Drawing.Size(121, 27);
 			this.toolStripComboBox1.ToolTipText = "Поиск по имени файла";
 			this.toolStripComboBox1.SelectedIndexChanged += new System.EventHandler(this.ToolStripComboBox1SelectedIndexChanged);
 			this.toolStripComboBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ToolStripComboBox1KeyPress);
@@ -609,12 +632,12 @@ namespace Catfish
 			// toolStripSeparator9
 			// 
 			this.toolStripSeparator9.Name = "toolStripSeparator9";
-			this.toolStripSeparator9.Size = new System.Drawing.Size(6, 25);
+			this.toolStripSeparator9.Size = new System.Drawing.Size(6, 27);
 			// 
 			// toolStripComboBox2
 			// 
 			this.toolStripComboBox2.Name = "toolStripComboBox2";
-			this.toolStripComboBox2.Size = new System.Drawing.Size(121, 25);
+			this.toolStripComboBox2.Size = new System.Drawing.Size(121, 23);
 			this.toolStripComboBox2.ToolTipText = "Поиск по содержанию файла";
 			this.toolStripComboBox2.SelectedIndexChanged += new System.EventHandler(this.ToolStripComboBox2SelectedIndexChanged);
 			this.toolStripComboBox2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ToolStripComboBox2KeyPress);
@@ -651,6 +674,8 @@ namespace Catfish
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.ToolStripMenuItem удалитьФайлToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem удалитьПапкуToolStripMenuItem;
 		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel5;
 		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
