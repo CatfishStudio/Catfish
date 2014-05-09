@@ -1,6 +1,6 @@
 ﻿/*
  * Сделано в SharpDevelop.
- * Пользователь: Catfish
+ * Пользователь: Somov Evgeniy
  * Дата: 04.05.2014
  * Время: 9:51
  * 
@@ -869,11 +869,13 @@ namespace Catfish
 		/* Настройки ---------------------------------------------*/
 		void ШрифтToolStripMenuItemClick(object sender, EventArgs e)
 		{
+			fontDialog1.Font = richTextBox1.Font;
 			if(fontDialog1.ShowDialog() == DialogResult.OK) richTextBox1.Font = fontDialog1.Font;
 		}
 		
 		void ToolStripButton14Click(object sender, EventArgs e)
 		{
+			fontDialog1.Font = richTextBox1.Font;
 			if(fontDialog1.ShowDialog() == DialogResult.OK) richTextBox1.Font = fontDialog1.Font;			
 		}
 		

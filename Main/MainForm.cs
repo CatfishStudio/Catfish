@@ -79,6 +79,8 @@ namespace Catfish
 			_localClient = new OleDbServerFull(Config.PathBase);
 			_localDataSet = new DataSet();
 			_localDataSet2 = new DataSet();
+			/* Меню дерева */
+			treeviewMenu("");
 		}
 		
 		void ВыходToolStripMenuItemClick(object sender, EventArgs e)
@@ -89,17 +91,33 @@ namespace Catfish
 		/* Создать папку */
 		void СоздатьПапкуToolStripMenuItemClick(object sender, EventArgs e)
 		{
-			Folder fFolder = new Folder();
-			if(this.TopMost) fFolder.TopMost = true;
-			fFolder.Show();
+			openFolder(true);	
+		}
+		
+		void СоздатьПапкуToolStripMenuItem1Click(object sender, EventArgs e)
+		{
+			openFolder(true);
+		}
+				
+		void РедактироватьПапкуToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			openFolder(false);
 		}
 		
 		/* Создать файл */
 		void СоздатьЗаписьToolStripMenuItemClick(object sender, EventArgs e)
 		{
-			Element fFile = new Element();
-			if(this.TopMost) fFile.TopMost = true;
-			fFile.Show();
+			openFile(true);
+		}
+				
+		void СоздатьФайлToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			openFile(true);
+		}
+		
+		void ОткрытьФайлToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			openFile(false);
 		}
 		
 		/* Редактор */
@@ -118,10 +136,44 @@ namespace Catfish
 		}
 		
 		
-		/* При выборе значения */
+		/* Меню дерева */
+		void treeviewMenu(String _type)
+		{
+			if(_type == "Папка:"){
+				создатьПапкуToolStripMenuItem1.Visible = true;
+				редактироватьПапкуToolStripMenuItem.Visible = true;
+				создатьФайлToolStripMenuItem.Visible = true;
+				открытьФайлToolStripMenuItem.Visible = false;
+				toolStripButton5.Enabled = false;
+				toolStripButton4.Enabled = true;
+			}
+			if(_type == "Файл:"){
+				создатьФайлToolStripMenuItem.Visible = true;
+				открытьФайлToolStripMenuItem.Visible = true;
+				создатьПапкуToolStripMenuItem1.Visible = true;
+				редактироватьПапкуToolStripMenuItem.Visible = false;
+				toolStripButton5.Enabled = true;
+				toolStripButton4.Enabled = false;
+			}
+			if(_type == ""){
+				создатьПапкуToolStripMenuItem1.Visible = true;
+				редактироватьПапкуToolStripMenuItem.Visible = false;
+				создатьФайлToolStripMenuItem.Visible = true;
+				открытьФайлToolStripMenuItem.Visible = false;
+				toolStripButton5.Enabled = false;
+				toolStripButton4.Enabled = false;
+			}
+		}
+		
+		/* При открытии меню дерева */
+		void ContextMenuStrip2Opening(object sender, CancelEventArgs e)
+		{
+			if(treeView1.Nodes.Count <= 0) treeviewMenu("");
+		}
+		
+		/* При выборе значения в дереве */
 		void TreeView1AfterSelect(object sender, TreeViewEventArgs e)
 		{
-			toolStripStatusLabel3.Text = treeView1.SelectedNode.Text;
 			try{
 				for(int i = 0; i < _localDataSet.Tables["Хранилище"].Rows.Count; i++){
 					/* Если папка */
@@ -129,6 +181,10 @@ namespace Catfish
 						if(_localDataSet.Tables["Хранилище"].Rows[i]["ПапкаИдентификатор"].ToString() == treeView1.SelectedNode.Text){
 							richTextBox1.Text = "";
 							toolStripStatusLabel2.Text = "Папка:";
+							toolStripStatusLabel3.Text = _localDataSet.Tables["Хранилище"].Rows[i]["ПапкаИдентификатор"].ToString();
+							toolStripStatusLabel4.Text = "Файл:";
+							toolStripStatusLabel5.Text = "...";
+							treeviewMenu("Папка:");
 							break;
 						}
 					}
@@ -136,15 +192,21 @@ namespace Catfish
 					if(_localDataSet.Tables["Хранилище"].Rows[i]["ТипОбъекта"].ToString() == "Элемент"){
 						if(_localDataSet.Tables["Хранилище"].Rows[i]["ФайлИдентификатор"].ToString() == treeView1.SelectedNode.Text){
 							richTextBox1.Text = _localDataSet.Tables["Хранилище"].Rows[i]["СодержаниеФайла"].ToString();
-							toolStripStatusLabel2.Text = "Файл:";
+							toolStripStatusLabel2.Text = "Папка:";
+							toolStripStatusLabel3.Text = _localDataSet.Tables["Хранилище"].Rows[i]["ФайлВПапке"].ToString();
+							toolStripStatusLabel4.Text = "Файл:";
+							toolStripStatusLabel5.Text = _localDataSet.Tables["Хранилище"].Rows[i]["ФайлИдентификатор"].ToString();
+							treeviewMenu("Файл:");
 							break;
 						}
 					}
 				}
 			}catch{
 				richTextBox1.Clear();
-				toolStripStatusLabel2.Text = "...";
+				toolStripStatusLabel2.Text = "Папка:";
 				toolStripStatusLabel3.Text = "...";
+				toolStripStatusLabel4.Text = "Файл:";
+				toolStripStatusLabel5.Text = "...";
 			}
 		}
 		
@@ -176,6 +238,7 @@ namespace Catfish
 						
 				}
 				treeView1.Select();
+				if(treeView1.Nodes.Count <= 0) treeviewMenu("");
 			}catch{
 				treeView1.Nodes.Clear();
 				_localDataSet.Clear();
@@ -214,17 +277,50 @@ namespace Catfish
 		/* Показать всё содержимое */
 		void showAll()
 		{
-			_localDataSet.Clear();
-			_localDataSet2.Clear();
+			try{
+				_localDataSet.Clear();
+				_localDataSet2.Clear();
 			
-			_localClient.SelectSqlCommand = "SELECT ДатаПоследнегоСохранения, ПапкаИдентификатор, СодержаниеФайла, Строка, ТипОбъекта, ФайлВПапке, ФайлИдентификатор FROM Хранилище ORDER BY ПапкаИдентификатор ASC";
-			_localClient.ExecuteFill(_localDataSet, "Хранилище");
+				_localClient.SelectSqlCommand = "SELECT ДатаПоследнегоСохранения, ПапкаИдентификатор, СодержаниеФайла, Строка, ТипОбъекта, ФайлВПапке, ФайлИдентификатор FROM Хранилище ORDER BY ПапкаИдентификатор ASC";
+				_localClient.ExecuteFill(_localDataSet, "Хранилище");
 			
-			_localClient.SelectSqlCommand = "SELECT ДатаПоследнегоСохранения, ПапкаИдентификатор, СодержаниеФайла, Строка, ТипОбъекта, ФайлВПапке, ФайлИдентификатор FROM Хранилище ORDER BY Строка ASC";
-			_localClient.ExecuteFill(_localDataSet2, "Хранилище");
+				_localClient.SelectSqlCommand = "SELECT ДатаПоследнегоСохранения, ПапкаИдентификатор, СодержаниеФайла, Строка, ТипОбъекта, ФайлВПапке, ФайлИдентификатор FROM Хранилище ORDER BY Строка ASC";
+				_localClient.ExecuteFill(_localDataSet2, "Хранилище");
 			
-			//Загрузка дерева
+				//Загрузка дерева
+				String _nameGr = "";
+				int _actionGr = 0;
+				int _actionEl = 0;
+				bool _nextGr = false;
 			
+				treeView1.Nodes.Clear();
+				for(int i = 0; i < _localDataSet.Tables["Хранилище"].Rows.Count; i++){
+					if(_localDataSet.Tables["Хранилище"].Rows[i]["ТипОбъекта"].ToString() == "Группа"){
+						_nameGr = _localDataSet.Tables["Хранилище"].Rows[i]["ПапкаИдентификатор"].ToString();
+						treeView1.Nodes.Add(_nameGr);
+						treeView1.Nodes[_actionGr].ImageIndex = 0;
+						treeView1.Nodes[_actionGr].SelectedImageIndex = 1;
+						_actionGr++;
+						_nextGr = true;
+					}
+				
+					if(_nextGr){
+						_actionEl = 0;
+						for(int j = 0; j < _localDataSet2.Tables["Хранилище"].Rows.Count; j++){
+							if(_localDataSet2.Tables["Хранилище"].Rows[j]["ТипОбъекта"].ToString() == "Элемент" && _localDataSet2.Tables["Хранилище"].Rows[j]["ФайлВПапке"].ToString() == _nameGr){
+								treeView1.Nodes[_actionGr - 1].Nodes.Add(_localDataSet2.Tables["Хранилище"].Rows[j]["ФайлИдентификатор"].ToString());
+								treeView1.Nodes[_actionGr - 1].Nodes[_actionEl].ImageIndex = 2;
+								treeView1.Nodes[_actionGr - 1].Nodes[_actionEl].SelectedImageIndex = 2;
+								_actionEl++;
+							}
+						}
+						_nextGr = false;
+					}
+				}
+				treeView1.Select();
+			}catch{
+				MessageBox.Show("Произошла ошибка в момент выгрузки всех данных.","Ошибка!",MessageBoxButtons.OK);
+			}
 		}
 		
 		void ПоказатьToolStripMenuItemClick(object sender, EventArgs e)
@@ -238,47 +334,75 @@ namespace Catfish
 		}
 		
 		/* Создать папку */
-		void ToolStripButton1Click(object sender, EventArgs e)
-		{
+		void openFolder(bool _new){
 			Folder fFolder = new Folder();
 			if(this.TopMost) fFolder.TopMost = true;
-			fFolder.Show();			
+			if(_new) fFolder.Text = "Новая папка";
+			else fFolder.Text = toolStripStatusLabel3.Text;
+			fFolder.mForm = this;
+			fFolder.Show();	
+		}
+		
+		void ToolStripButton1Click(object sender, EventArgs e)
+		{
+			openFolder(true);
+		}
+		
+		/* Редактировать папку */
+		void ToolStripButton4Click(object sender, EventArgs e)
+		{
+			openFolder(false);		
 		}
 		
 		/* создать файл */
-		void ToolStripButton2Click(object sender, EventArgs e)
+		void openFile(bool _new)
 		{
 			Element fFile = new Element();
 			if(this.TopMost) fFile.TopMost = true;
+			if(_new) fFile.Text = "Новый файл";
+			else fFile.Text = toolStripStatusLabel5.Text;
+			fFile.mForm = this;
 			fFile.Show();
 		}
 		
+		void ToolStripButton2Click(object sender, EventArgs e)
+		{
+			openFile(true);
+		}
+				
+		/* Редактировать файл */
+		void ToolStripButton5Click(object sender, EventArgs e)
+		{
+			openFile(false);			
+		}
+		
 		/* Блокнот */
-		void ToolStripButton4Click(object sender, EventArgs e)
+		void БлокнотToolStripMenuItem1Click(object sender, EventArgs e)
 		{
 			System.Diagnostics.Process.Start("notepad.exe"); // блокнот
 		}
 		
 		/* Калькулятор */
-		void ToolStripButton8Click(object sender, EventArgs e)
+		void КалькуляторToolStripMenuItem1Click(object sender, EventArgs e)
 		{
 			System.Diagnostics.Process.Start("calc.exe"); // калькулятор
 		}
 		
 		/* Редактор */
-		void ToolStripButton9Click(object sender, EventArgs e)
+		void РедакторToolStripMenuItem1Click(object sender, EventArgs e)
 		{
 			Editor fEditor = new Editor();
 			fEditor.Show();
 		}
 		
 		/* FTP клиент */
-		void ToolStripButton5Click(object sender, EventArgs e)
+		void FTPклиентToolStripMenuItem1Click(object sender, EventArgs e)
 		{
 			FTP fFTP = new FTP();
 			if(this.TopMost) fFTP.TopMost = true;
 			fFTP.Show();
 		}
+		
 		
 		/* Настройки */
 		void ОтображатьПоверхОконToolStripMenuItem1Click(object sender, EventArgs e)

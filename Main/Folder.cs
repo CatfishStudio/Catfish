@@ -1,6 +1,6 @@
 ﻿/*
  * Сделано в SharpDevelop.
- * Пользователь: Catfish
+ * Пользователь: Somov Evgeniy
  * Дата: 04.05.2014
  * Время: 9:30
  * 
@@ -28,5 +28,7 @@ namespace Catfish
 			// TODO: Add constructor code after the InitializeComponent() call.
 			//
 		}
+		
+		public MainForm mForm;
 	}
 }
