@@ -8,6 +8,7 @@
  */
 using System;
 using System.Drawing;
+using System.Security.AccessControl;
 using System.Windows.Forms;
 using System.Data;
 using System.Data.OleDb;
@@ -41,32 +42,52 @@ namespace Catfish
 			Close();
 		}
 		
-		/* Сохранение в базу данных */
+		/* Сохранение в базе данных */
 		void Button1Click(object sender, EventArgs e)
 		{
 			if(this.Text == "Новая папка"){
-				/* Сохраняем новые данные */
-				DataRow _newRow = _localDataSet.Tables["Хранилище"].NewRow();
-				_newRow["ТипОбъекта"] = "Группа";
-				_newRow["ПапкаИдентификатор"] = textBox1.Text;
-				_newRow["СодержаниеФайла"] = "";
-				_newRow["ДатаПоследнегоСохранения"] = DateTime.Today;
-				_newRow["ФайлИдентификатор"] = "";
-				_newRow["ФайлВПапке"] = "";
-				_localDataSet.Tables["Хранилище"].Rows.Add(_newRow);
-				if(_localClient.ExecuteUpdate(_localDataSet, "Хранилище")){
-					MessageBox.Show("Сохранение прошло успешно!","Сообщение:",MessageBoxButtons.OK);
-					Close();
-					mForm.ShowAll();
-				}else MessageBox.Show("Ошибка сохранения!","Сообщение:",MessageBoxButtons.OK);
+				bool _access = true;
+				for(int i = 0; i < _localDataSet.Tables["Хранилище"].Rows.Count; i++)
+					if(_localDataSet.Tables["Хранилище"].Rows[i]["ПапкаИдентификатор"].ToString() == textBox1.Text || _localDataSet.Tables["Хранилище"].Rows[i]["ФайлИдентификатор"].ToString() == textBox1.Text) _access = false;
 				
+				
+				/* Сохраняем новые данные */
+				if(_access){
+					DataRow _newRow = _localDataSet.Tables["Хранилище"].NewRow();
+					_newRow["ТипОбъекта"] = "Группа";
+					_newRow["ПапкаИдентификатор"] = textBox1.Text;
+					_newRow["СодержаниеФайла"] = "";
+					_newRow["ДатаПоследнегоСохранения"] = DateTime.Today;
+					_newRow["ФайлИдентификатор"] = "Папка " + textBox1.Text;
+					_newRow["ФайлВПапке"] = "";
+					_localDataSet.Tables["Хранилище"].Rows.Add(_newRow);
+					if(_localClient.ExecuteUpdate(_localDataSet, "Хранилище")){
+						MessageBox.Show("Сохранение прошло успешно!","Сообщение:",MessageBoxButtons.OK);
+						Close();
+						mForm.ShowAll();
+					}else MessageBox.Show("Ошибка сохранения!","Сообщение:",MessageBoxButtons.OK);
+				} else MessageBox.Show("Папка или файл с таким именем уже существуют!","Сообщение:",MessageBoxButtons.OK);
 			}else{
 				/* Изменение существующей записи */
 				_localDataSet.Tables["Хранилище"].Rows[0]["ПапкаИдентификатор"] = textBox1.Text;
+				_localDataSet.Tables["Хранилище"].Rows[0]["ФайлИдентификатор"] = "Папка " + textBox1.Text;
+				
 				if(_localClient.ExecuteUpdate(_localDataSet, "Хранилище")){
-					MessageBox.Show("Сохранение прошло успешно!","Сообщение:",MessageBoxButtons.OK);
-					Close();
-					mForm.ShowAll();
+					
+					/* Редактируем файлы */
+					OleDbServerShort _localClientShort = new OleDbServerShort(Config.PathBase);
+					_localClientShort.SqlCommand = "UPDATE Хранилище SET ФайлВПапке = '" + textBox1.Text + "' WHERE (ФайлВПапке = '" + this.Text + "')";
+					if(_localClientShort.ExecuteNonQuery()){
+						MessageBox.Show("Сохранение прошло успешно!","Сообщение:",MessageBoxButtons.OK);
+						Close();
+						mForm.ShowAll();
+					}else{
+						
+						// была ошибка, возвращаем всё обратно
+						_localDataSet.Tables["Хранилище"].Rows[0]["ПапкаИдентификатор"] = this.Text;
+						if(_localClient.ExecuteUpdate(_localDataSet, "Хранилище")) MessageBox.Show("Данные успешно восстановлены!","Сообщение:",MessageBoxButtons.OK);
+						else MessageBox.Show("Критическая ошибка! Данные восстановлению не подлежат.","Сообщение:",MessageBoxButtons.OK);						
+					}
 				}else MessageBox.Show("Ошибка сохранения!","Сообщение:",MessageBoxButtons.OK);
 				
 			}

@@ -89,13 +89,16 @@ namespace Catfish
 			// 
 			// richTextBox1
 			// 
+			this.richTextBox1.AcceptsTab = true;
 			this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
 			this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.richTextBox1.Location = new System.Drawing.Point(3, 3);
 			this.richTextBox1.Name = "richTextBox1";
 			this.richTextBox1.Size = new System.Drawing.Size(437, 236);
 			this.richTextBox1.TabIndex = 0;
 			this.richTextBox1.Text = "";
+			this.richTextBox1.WordWrap = false;
 			// 
 			// button2
 			// 
@@ -106,6 +109,7 @@ namespace Catfish
 			this.button2.TabIndex = 8;
 			this.button2.Text = "Отмена.";
 			this.button2.UseVisualStyleBackColor = true;
+			this.button2.Click += new System.EventHandler(this.Button2Click);
 			// 
 			// button1
 			// 
@@ -116,6 +120,7 @@ namespace Catfish
 			this.button1.TabIndex = 7;
 			this.button1.Text = "Сохранить.";
 			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.Button1Click);
 			// 
 			// tabControl1
 			// 
@@ -167,6 +172,7 @@ namespace Catfish
 			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.Name = "Element";
 			this.Text = "Файл";
+			this.Load += new System.EventHandler(this.ElementLoad);
 			this.tabControl1.ResumeLayout(false);
 			this.tabPage1.ResumeLayout(false);
 			this.tabPage2.ResumeLayout(false);

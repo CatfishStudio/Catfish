@@ -132,14 +132,16 @@ namespace Catfish
 		}
 		
 		
-		/* Удаление папки горячей клавишей */
-		
+		/* горячие клавиши */
 		void TreeView1KeyDown(object sender, KeyEventArgs e)
 		{
 			if(e.KeyData == Keys.Delete){
 				if(toolStripStatusLabel5.Text == "...") deleteFolder(toolStripStatusLabel3.Text);
 				else deleteFile(toolStripStatusLabel5.Text);
 			}
+			if(e.KeyData == Keys.Enter && toolStripStatusLabel5.Text != "...") openFile(false);
+			if(e.KeyData == Keys.Insert && toolStripStatusLabel5.Text != "...") openFile(true);
+			if(e.KeyData == Keys.Insert && toolStripStatusLabel5.Text == "...") openFolder(true);
 		}
 		
 		
@@ -158,6 +160,12 @@ namespace Catfish
 		void ОткрытьФайлToolStripMenuItemClick(object sender, EventArgs e)
 		{
 			openFile(false);
+		}
+		
+		
+		void TreeView1MouseDoubleClick(object sender, MouseEventArgs e)
+		{
+			if(toolStripStatusLabel5.Text != "...") openFile(false);
 		}
 		
 		/* Удалить файл */
@@ -388,6 +396,10 @@ namespace Catfish
 					}
 				}
 				treeView1.Select();
+				toolStripStatusLabel2.Text = "Папка:";
+				toolStripStatusLabel3.Text = "...";
+				toolStripStatusLabel4.Text = "Файл:";
+				toolStripStatusLabel5.Text = "...";
 			}catch{
 				MessageBox.Show("Произошла ошибка в момент выгрузки всех данных.","Ошибка!",MessageBoxButtons.OK);
 			}
@@ -505,8 +517,6 @@ namespace Catfish
 		{
 			Application.Exit();
 		}
-		
-		
 		
 		
 	}
