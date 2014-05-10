@@ -574,5 +574,11 @@ namespace Catfish
 		{
 			System.Diagnostics.Process.Start(e.LinkText);
 		}
+		
+		/* Двойной клик по иконке программы в области задач */
+		void NotifyIcon1DoubleClick(object sender, EventArgs e)
+		{
+			this.Visible = true; // показать скрытое окно	
+		}
 	}
 }
