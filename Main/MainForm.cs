@@ -43,6 +43,31 @@ namespace Catfish
 			System.Diagnostics.Process.Start("notepad.exe"); // блокнот
 		}
 		
+		void КалькуляторToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			System.Diagnostics.Process.Start("calc.exe"); // калькулятор		
+		}
+		
+		void PaintToolStripMenuItem1Click(object sender, EventArgs e)
+		{
+			System.Diagnostics.Process.Start("mspaint.exe");
+		}
+		
+		void WordpadToolStripMenuItem1Click(object sender, EventArgs e)
+		{
+			System.Diagnostics.Process.Start("wordpad.exe");
+		}
+		
+		void ПроводникToolStripMenuItem1Click(object sender, EventArgs e)
+		{
+			System.Diagnostics.Process.Start("explorer.exe");
+		}
+		
+		void КоманднаяСтрокаToolStripMenuItem1Click(object sender, EventArgs e)
+		{
+			System.Diagnostics.Process.Start("cmd.exe");
+		}
+		
 		void ОтображатьПоверхОконToolStripMenuItemClick(object sender, System.EventArgs e)
 		{
 			/* Опция: поверх всех окон */
@@ -58,10 +83,6 @@ namespace Catfish
 			}
 		}		
 		
-		void КалькуляторToolStripMenuItemClick(object sender, EventArgs e)
-		{
-			System.Diagnostics.Process.Start("calc.exe"); // калькулятор		
-		}
 		
 		void MainFormClosing(object sender, CancelEventArgs e)
 		{
@@ -117,8 +138,8 @@ namespace Catfish
 					/* удаление самой папки */
 					_localClientShort.SqlCommand = "DELETE FROM Хранилище WHERE (ПапкаИдентификатор = '" + _folderName + "')";
 					if(_localClientShort.ExecuteNonQuery()){
-						ShowAll();
 						MessageBox.Show("Папка успешно удалена!","Сообщение:",MessageBoxButtons.OK);
+						ShowAll();
 					}else{
 						MessageBox.Show("Ошибка удаления папки!","Сообщение:",MessageBoxButtons.OK);
 					}
@@ -175,8 +196,8 @@ namespace Catfish
 				OleDbServerShort _localClientShort = new OleDbServerShort(Config.PathBase);
 				_localClientShort.SqlCommand = "DELETE FROM Хранилище WHERE (ФайлИдентификатор = '" + _folderName + "')";
 				if(_localClientShort.ExecuteNonQuery()){
-					ShowAll();
 					MessageBox.Show("Файл успешно удален!","Сообщение:",MessageBoxButtons.OK);
+					ShowAll();
 				}else{
 					MessageBox.Show("Ошибка удаления файла!","Сообщение:",MessageBoxButtons.OK);
 				}
@@ -480,6 +501,30 @@ namespace Catfish
 			System.Diagnostics.Process.Start("calc.exe"); // калькулятор
 		}
 		
+		/* Paint */
+		void PaintToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			System.Diagnostics.Process.Start("mspaint.exe");
+		}
+		
+		/* Wordpad */
+		void WordpadToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			System.Diagnostics.Process.Start("wordpad.exe");
+		}
+		
+		/* Проводник */
+		void ПроводникToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			System.Diagnostics.Process.Start("explorer.exe");
+		}
+		
+		/* Командная строка */
+		void КоманднаяСтрокаToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			System.Diagnostics.Process.Start("cmd.exe");
+		}
+		
 		/* Редактор */
 		void РедакторToolStripMenuItem1Click(object sender, EventArgs e)
 		{
@@ -517,7 +562,17 @@ namespace Catfish
 		{
 			Application.Exit();
 		}
+				
+		/* О программе */
+		void ОПрограммеToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			MessageBox.Show("Программа: Catfish" + System.Environment.NewLine + "Версия: 1.0" + System.Environment.NewLine + "Автор: Сомов евгений Павлович" + System.Environment.NewLine + "© Somov Evgeniy, 2014", "О программе", MessageBoxButtons.OK);						
+		}
 		
-		
+		/* При нажатии на ссылку */		
+		void RichTextBox1LinkClicked(object sender, LinkClickedEventArgs e)
+		{
+			System.Diagnostics.Process.Start(e.LinkText);
+		}
 	}
 }

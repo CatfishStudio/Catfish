@@ -99,6 +99,7 @@ namespace Catfish
 			this.richTextBox1.TabIndex = 0;
 			this.richTextBox1.Text = "";
 			this.richTextBox1.WordWrap = false;
+			this.richTextBox1.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.RichTextBox1LinkClicked);
 			// 
 			// button2
 			// 

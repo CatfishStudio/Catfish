@@ -42,17 +42,26 @@ namespace Catfish
 			Close();
 		}
 		
+		/* Проверка уникальности */
+		bool uniquenessCheck(String _oldValue, String _newValue)
+		{
+			if(_oldValue != _newValue){
+				OleDbServerFull _localClientCheck = new OleDbServerFull(Config.PathBase);
+				DataSet _localDataSetCheck = new DataSet();
+				_localClient.SelectSqlCommand = "SELECT ДатаПоследнегоСохранения, ПапкаИдентификатор, СодержаниеФайла, Строка, ТипОбъекта, ФайлВПапке, ФайлИдентификатор FROM Хранилище WHERE (ПапкаИдентификатор = '" + _newValue + "' OR ФайлИдентификатор = '" + _newValue + "')";
+				if(_localClient.ExecuteFill(_localDataSetCheck, "Хранилище")){
+					if(_localDataSetCheck.Tables["Хранилище"].Rows.Count > 0) return false; // такое имя уже есть (запрет)
+					else return true; // повторений имени нет (разрешено)
+				}else return false; // на случай ошибки (запрет)
+			}else return true; // имя не изменилось (разрешено)
+		}
+		
 		/* Сохранение в базе данных */
 		void Button1Click(object sender, EventArgs e)
 		{
 			if(this.Text == "Новая папка"){
-				bool _access = true;
-				for(int i = 0; i < _localDataSet.Tables["Хранилище"].Rows.Count; i++)
-					if(_localDataSet.Tables["Хранилище"].Rows[i]["ПапкаИдентификатор"].ToString() == textBox1.Text || _localDataSet.Tables["Хранилище"].Rows[i]["ФайлИдентификатор"].ToString() == textBox1.Text) _access = false;
-				
-				
 				/* Сохраняем новые данные */
-				if(_access){
+				if(uniquenessCheck(this.Text, textBox1.Text)){ // проверка уникальности
 					DataRow _newRow = _localDataSet.Tables["Хранилище"].NewRow();
 					_newRow["ТипОбъекта"] = "Группа";
 					_newRow["ПапкаИдентификатор"] = textBox1.Text;
@@ -69,27 +78,28 @@ namespace Catfish
 				} else MessageBox.Show("Папка или файл с таким именем уже существуют!","Сообщение:",MessageBoxButtons.OK);
 			}else{
 				/* Изменение существующей записи */
-				_localDataSet.Tables["Хранилище"].Rows[0]["ПапкаИдентификатор"] = textBox1.Text;
-				_localDataSet.Tables["Хранилище"].Rows[0]["ФайлИдентификатор"] = "Папка " + textBox1.Text;
+				if(uniquenessCheck(this.Text, textBox1.Text)){ // проверка уникальности
+					_localDataSet.Tables["Хранилище"].Rows[0]["ПапкаИдентификатор"] = textBox1.Text;
+					_localDataSet.Tables["Хранилище"].Rows[0]["ФайлИдентификатор"] = "Папка " + textBox1.Text;
 				
-				if(_localClient.ExecuteUpdate(_localDataSet, "Хранилище")){
+					if(_localClient.ExecuteUpdate(_localDataSet, "Хранилище")){
 					
-					/* Редактируем файлы */
-					OleDbServerShort _localClientShort = new OleDbServerShort(Config.PathBase);
-					_localClientShort.SqlCommand = "UPDATE Хранилище SET ФайлВПапке = '" + textBox1.Text + "' WHERE (ФайлВПапке = '" + this.Text + "')";
-					if(_localClientShort.ExecuteNonQuery()){
-						MessageBox.Show("Сохранение прошло успешно!","Сообщение:",MessageBoxButtons.OK);
-						Close();
-						mForm.ShowAll();
-					}else{
+						/* Редактируем файлы */
+						OleDbServerShort _localClientShort = new OleDbServerShort(Config.PathBase);
+						_localClientShort.SqlCommand = "UPDATE Хранилище SET ФайлВПапке = '" + textBox1.Text + "' WHERE (ФайлВПапке = '" + this.Text + "')";
+						if(_localClientShort.ExecuteNonQuery()){
+							MessageBox.Show("Сохранение прошло успешно!","Сообщение:",MessageBoxButtons.OK);
+							Close();
+							mForm.ShowAll();
+						}else{
 						
-						// была ошибка, возвращаем всё обратно
-						_localDataSet.Tables["Хранилище"].Rows[0]["ПапкаИдентификатор"] = this.Text;
-						if(_localClient.ExecuteUpdate(_localDataSet, "Хранилище")) MessageBox.Show("Данные успешно восстановлены!","Сообщение:",MessageBoxButtons.OK);
-						else MessageBox.Show("Критическая ошибка! Данные восстановлению не подлежат.","Сообщение:",MessageBoxButtons.OK);						
-					}
-				}else MessageBox.Show("Ошибка сохранения!","Сообщение:",MessageBoxButtons.OK);
-				
+							// была ошибка, возвращаем всё обратно
+							_localDataSet.Tables["Хранилище"].Rows[0]["ПапкаИдентификатор"] = this.Text;
+							if(_localClient.ExecuteUpdate(_localDataSet, "Хранилище")) MessageBox.Show("Данные успешно восстановлены!","Сообщение:",MessageBoxButtons.OK);
+							else MessageBox.Show("Критическая ошибка! Данные восстановлению не подлежат.","Сообщение:",MessageBoxButtons.OK);						
+						}
+					}else MessageBox.Show("Ошибка сохранения!","Сообщение:",MessageBoxButtons.OK);
+				} else MessageBox.Show("Папка или файл с таким именем уже существуют!","Сообщение:",MessageBoxButtons.OK);
 			}
 		}
 		

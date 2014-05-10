@@ -42,17 +42,30 @@ namespace Catfish
 			Close();
 		}
 		
+		/* Проверка уникальности */
+		bool uniquenessCheck(String _oldValue, String _newValue)
+		{
+			if(_oldValue != _newValue){
+				OleDbServerFull _localClientCheck = new OleDbServerFull(Config.PathBase);
+				DataSet _localDataSetCheck = new DataSet();
+				_localClient.SelectSqlCommand = "SELECT ДатаПоследнегоСохранения, ПапкаИдентификатор, СодержаниеФайла, Строка, ТипОбъекта, ФайлВПапке, ФайлИдентификатор FROM Хранилище WHERE (ПапкаИдентификатор = '" + _newValue + "' OR ФайлИдентификатор = '" + _newValue + "')";
+				if(_localClient.ExecuteFill(_localDataSetCheck, "Хранилище")){
+					if(_localDataSetCheck.Tables["Хранилище"].Rows.Count > 0) return false; // такое имя уже есть (запрет)
+					else return true; // повторений имени нет (разрешено)
+				}else return false; // на случай ошибки (запрет)
+			}else return true; // имя не изменилось (разрешено)
+		}
+		
 		/* Сохранение в базе данных */
 		void Button1Click(object sender, EventArgs e)
 		{
+			if(comboBox1.Text == "" || comboBox1.Text == "..."){
+				MessageBox.Show("Родительская папка не выбрана!", "Сообщение:", MessageBoxButtons.OK);
+				return;
+			}
 			if(this.Text == "Новый файл"){
-				bool _access = true;
-				for(int i = 0; i < _localDataSet.Tables["Хранилище"].Rows.Count; i++)
-					if(_localDataSet.Tables["Хранилище"].Rows[i]["ПапкаИдентификатор"].ToString() == textBox1.Text || _localDataSet.Tables["Хранилище"].Rows[i]["ФайлИдентификатор"].ToString() == textBox1.Text) _access = false;
-				
-				
 				/* Сохраняем новые данные */
-				if(_access){
+				if(uniquenessCheck(this.Text, textBox1.Text)){ // проверка уникальности
 					DataRow _newRow = _localDataSet.Tables["Хранилище"].NewRow();
 					_newRow["ТипОбъекта"] = "Элемент";
 					_newRow["ПапкаИдентификатор"] = "";
@@ -70,15 +83,17 @@ namespace Catfish
 				
 			}else{
 				/* Изменение существующей записи */
-				_localDataSet.Tables["Хранилище"].Rows[0]["ФайлИдентификатор"] = textBox1.Text;
-				_localDataSet.Tables["Хранилище"].Rows[0]["СодержаниеФайла"] = richTextBox1.Text;
-				_localDataSet.Tables["Хранилище"].Rows[0]["ФайлВПапке"] = comboBox1.Text;
+				if(uniquenessCheck(this.Text, textBox1.Text)){ // проверка уникальности
+					_localDataSet.Tables["Хранилище"].Rows[0]["ФайлИдентификатор"] = textBox1.Text;
+					_localDataSet.Tables["Хранилище"].Rows[0]["СодержаниеФайла"] = richTextBox1.Text;
+					_localDataSet.Tables["Хранилище"].Rows[0]["ФайлВПапке"] = comboBox1.Text;
 				
-				if(_localClient.ExecuteUpdate(_localDataSet, "Хранилище")){
-					MessageBox.Show("Сохранение прошло успешно!","Сообщение:",MessageBoxButtons.OK);
-					Close();
-					mForm.ShowAll();
-				}else MessageBox.Show("Ошибка сохранения!","Сообщение:",MessageBoxButtons.OK);
+					if(_localClient.ExecuteUpdate(_localDataSet, "Хранилище")){
+						MessageBox.Show("Сохранение прошло успешно!","Сообщение:",MessageBoxButtons.OK);
+						Close();
+						mForm.ShowAll();
+					}else MessageBox.Show("Ошибка сохранения!","Сообщение:",MessageBoxButtons.OK);
+				} else MessageBox.Show("Папка или файл с таким именем уже существуют!","Сообщение:",MessageBoxButtons.OK);
 			}
 		}
 		
@@ -129,13 +144,18 @@ namespace Catfish
 			}
 			
 			/*Загрузка доступных папок*/
-			/*
-			_localClient.SelectSqlCommand = "SELECT ДатаПоследнегоСохранения, ПапкаИдентификатор, СодержаниеФайла, Строка, ТипОбъекта, ФайлВПапке, ФайлИдентификатор FROM Хранилище WHERE (ТипОбъекта = 'Группа')";
+			_localClient.SelectSqlCommand = "SELECT ДатаПоследнегоСохранения, ПапкаИдентификатор, СодержаниеФайла, Строка, ТипОбъекта, ФайлВПапке, ФайлИдентификатор FROM Хранилище WHERE (ТипОбъекта = 'Группа') ORDER BY ПапкаИдентификатор ASC";
 			if(_localClient.ExecuteFill(_localDataSetFolders, "Хранилище")){
 				for (int i = 0; i < _localDataSetFolders.Tables["Хранилище"].Rows.Count; i++)
 					comboBox1.Items.Add(_localDataSetFolders.Tables["Хранилище"].Rows[i]["ПапкаИдентификатор"]);
 			}
-			*/
+			
+		}
+		
+		/* При нажатии на ссылку */
+		void RichTextBox1LinkClicked(object sender, LinkClickedEventArgs e)
+		{
+			System.Diagnostics.Process.Start(e.LinkText);
 		}
 	}
 }
