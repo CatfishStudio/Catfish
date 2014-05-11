@@ -40,6 +40,8 @@ namespace Catfish
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Editor));
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.создатьФайлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
 			this.открытьФайлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.открытьФайлКакToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.aSCIIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -86,10 +88,12 @@ namespace Catfish
 			this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+			this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+			this.toolStripButton18 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
 			this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
 			this.открытьФайлКакASCIIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -167,13 +171,15 @@ namespace Catfish
 									this.справкаToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(699, 24);
+			this.menuStrip1.Size = new System.Drawing.Size(738, 24);
 			this.menuStrip1.TabIndex = 0;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
 			// файлToolStripMenuItem
 			// 
 			this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+									this.создатьФайлToolStripMenuItem,
+									this.toolStripSeparator17,
 									this.открытьФайлToolStripMenuItem,
 									this.открытьФайлКакToolStripMenuItem,
 									this.сохранитьФайлToolStripMenuItem,
@@ -183,6 +189,19 @@ namespace Catfish
 			this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
 			this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
 			this.файлToolStripMenuItem.Text = "Файл";
+			// 
+			// создатьФайлToolStripMenuItem
+			// 
+			this.создатьФайлToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("создатьФайлToolStripMenuItem.Image")));
+			this.создатьФайлToolStripMenuItem.Name = "создатьФайлToolStripMenuItem";
+			this.создатьФайлToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+			this.создатьФайлToolStripMenuItem.Text = "Создать файл.";
+			this.создатьФайлToolStripMenuItem.Click += new System.EventHandler(this.СоздатьФайлToolStripMenuItemClick);
+			// 
+			// toolStripSeparator17
+			// 
+			this.toolStripSeparator17.Name = "toolStripSeparator17";
+			this.toolStripSeparator17.Size = new System.Drawing.Size(191, 6);
 			// 
 			// открытьФайлToolStripMenuItem
 			// 
@@ -546,14 +565,23 @@ namespace Catfish
 			// statusStrip1
 			// 
 			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+									this.toolStripStatusLabel4,
 									this.toolStripStatusLabel1,
 									this.toolStripStatusLabel2,
 									this.toolStripStatusLabel3});
 			this.statusStrip1.Location = new System.Drawing.Point(0, 389);
 			this.statusStrip1.Name = "statusStrip1";
-			this.statusStrip1.Size = new System.Drawing.Size(699, 22);
+			this.statusStrip1.Size = new System.Drawing.Size(738, 22);
 			this.statusStrip1.TabIndex = 1;
 			this.statusStrip1.Text = "statusStrip1";
+			// 
+			// toolStripStatusLabel4
+			// 
+			this.toolStripStatusLabel4.ForeColor = System.Drawing.Color.Red;
+			this.toolStripStatusLabel4.LinkColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+			this.toolStripStatusLabel4.Name = "toolStripStatusLabel4";
+			this.toolStripStatusLabel4.Size = new System.Drawing.Size(12, 17);
+			this.toolStripStatusLabel4.Text = "*";
 			// 
 			// toolStripStatusLabel1
 			// 
@@ -580,6 +608,7 @@ namespace Catfish
 			// toolStrip1
 			// 
 			this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+									this.toolStripButton18,
 									this.toolStripButton1,
 									this.toolStripDropDownButton1,
 									this.toolStripButton2,
@@ -612,9 +641,19 @@ namespace Catfish
 									this.toolStripButton19});
 			this.toolStrip1.Location = new System.Drawing.Point(0, 24);
 			this.toolStrip1.Name = "toolStrip1";
-			this.toolStrip1.Size = new System.Drawing.Size(699, 25);
+			this.toolStrip1.Size = new System.Drawing.Size(738, 25);
 			this.toolStrip1.TabIndex = 2;
 			this.toolStrip1.Text = "toolStrip1";
+			// 
+			// toolStripButton18
+			// 
+			this.toolStripButton18.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+			this.toolStripButton18.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton18.Image")));
+			this.toolStripButton18.ImageTransparentColor = System.Drawing.Color.Magenta;
+			this.toolStripButton18.Name = "toolStripButton18";
+			this.toolStripButton18.Size = new System.Drawing.Size(23, 22);
+			this.toolStripButton18.Text = "toolStripButton18";
+			this.toolStripButton18.Click += new System.EventHandler(this.ToolStripButton18Click);
 			// 
 			// toolStripButton1
 			// 
@@ -955,7 +994,7 @@ namespace Catfish
 			this.richTextBox1.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.richTextBox1.Location = new System.Drawing.Point(0, 49);
 			this.richTextBox1.Name = "richTextBox1";
-			this.richTextBox1.Size = new System.Drawing.Size(699, 340);
+			this.richTextBox1.Size = new System.Drawing.Size(738, 340);
 			this.richTextBox1.TabIndex = 3;
 			this.richTextBox1.Text = "";
 			this.richTextBox1.WordWrap = false;
@@ -978,13 +1017,13 @@ namespace Catfish
 									this.toolStripSeparator16,
 									this.выделитьВсёToolStripMenuItem1});
 			this.contextMenuStrip1.Name = "contextMenuStrip1";
-			this.contextMenuStrip1.Size = new System.Drawing.Size(153, 192);
+			this.contextMenuStrip1.Size = new System.Drawing.Size(152, 170);
 			// 
 			// toolStripMenuItem1
 			// 
 			this.toolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem1.Image")));
 			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-			this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+			this.toolStripMenuItem1.Size = new System.Drawing.Size(151, 22);
 			this.toolStripMenuItem1.Text = "Отменить.";
 			this.toolStripMenuItem1.Click += new System.EventHandler(this.ToolStripMenuItem1Click);
 			// 
@@ -992,20 +1031,20 @@ namespace Catfish
 			// 
 			this.toolStripMenuItem2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem2.Image")));
 			this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-			this.toolStripMenuItem2.Size = new System.Drawing.Size(152, 22);
+			this.toolStripMenuItem2.Size = new System.Drawing.Size(151, 22);
 			this.toolStripMenuItem2.Text = "Повторить.";
 			this.toolStripMenuItem2.Click += new System.EventHandler(this.ToolStripMenuItem2Click);
 			// 
 			// toolStripSeparator13
 			// 
 			this.toolStripSeparator13.Name = "toolStripSeparator13";
-			this.toolStripSeparator13.Size = new System.Drawing.Size(149, 6);
+			this.toolStripSeparator13.Size = new System.Drawing.Size(148, 6);
 			// 
 			// toolStripMenuItem3
 			// 
 			this.toolStripMenuItem3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem3.Image")));
 			this.toolStripMenuItem3.Name = "toolStripMenuItem3";
-			this.toolStripMenuItem3.Size = new System.Drawing.Size(152, 22);
+			this.toolStripMenuItem3.Size = new System.Drawing.Size(151, 22);
 			this.toolStripMenuItem3.Text = "Вырезать.";
 			this.toolStripMenuItem3.Click += new System.EventHandler(this.ToolStripMenuItem3Click);
 			// 
@@ -1013,7 +1052,7 @@ namespace Catfish
 			// 
 			this.toolStripMenuItem4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem4.Image")));
 			this.toolStripMenuItem4.Name = "toolStripMenuItem4";
-			this.toolStripMenuItem4.Size = new System.Drawing.Size(152, 22);
+			this.toolStripMenuItem4.Size = new System.Drawing.Size(151, 22);
 			this.toolStripMenuItem4.Text = "Копировать.";
 			this.toolStripMenuItem4.Click += new System.EventHandler(this.ToolStripMenuItem4Click);
 			// 
@@ -1021,26 +1060,26 @@ namespace Catfish
 			// 
 			this.toolStripMenuItem5.Image = ((System.Drawing.Image)(resources.GetObject("toolStripMenuItem5.Image")));
 			this.toolStripMenuItem5.Name = "toolStripMenuItem5";
-			this.toolStripMenuItem5.Size = new System.Drawing.Size(152, 22);
+			this.toolStripMenuItem5.Size = new System.Drawing.Size(151, 22);
 			this.toolStripMenuItem5.Text = "Вставить.";
 			this.toolStripMenuItem5.Click += new System.EventHandler(this.ToolStripMenuItem5Click);
 			// 
 			// toolStripMenuItem6
 			// 
 			this.toolStripMenuItem6.Name = "toolStripMenuItem6";
-			this.toolStripMenuItem6.Size = new System.Drawing.Size(152, 22);
+			this.toolStripMenuItem6.Size = new System.Drawing.Size(151, 22);
 			this.toolStripMenuItem6.Text = "Удалить.";
 			this.toolStripMenuItem6.Click += new System.EventHandler(this.ToolStripMenuItem6Click);
 			// 
 			// toolStripSeparator16
 			// 
 			this.toolStripSeparator16.Name = "toolStripSeparator16";
-			this.toolStripSeparator16.Size = new System.Drawing.Size(149, 6);
+			this.toolStripSeparator16.Size = new System.Drawing.Size(148, 6);
 			// 
 			// выделитьВсёToolStripMenuItem1
 			// 
 			this.выделитьВсёToolStripMenuItem1.Name = "выделитьВсёToolStripMenuItem1";
-			this.выделитьВсёToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+			this.выделитьВсёToolStripMenuItem1.Size = new System.Drawing.Size(151, 22);
 			this.выделитьВсёToolStripMenuItem1.Text = "Выделить всё.";
 			this.выделитьВсёToolStripMenuItem1.Click += new System.EventHandler(this.ВыделитьВсёToolStripMenuItem1Click);
 			// 
@@ -1097,7 +1136,7 @@ namespace Catfish
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(699, 411);
+			this.ClientSize = new System.Drawing.Size(738, 411);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.richTextBox1);
 			this.Controls.Add(this.toolStrip1);
@@ -1121,6 +1160,10 @@ namespace Catfish
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+		private System.Windows.Forms.ToolStripButton toolStripButton18;
+		private System.Windows.Forms.ToolStripSeparator toolStripSeparator17;
+		private System.Windows.Forms.ToolStripMenuItem создатьФайлToolStripMenuItem;
+		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;
 		private System.Windows.Forms.ToolStripMenuItem выделитьВсёToolStripMenuItem1;
 		private System.Windows.Forms.ToolStripSeparator toolStripSeparator16;
 		private System.Windows.Forms.ToolStripMenuItem выделитьВсёToolStripMenuItem;

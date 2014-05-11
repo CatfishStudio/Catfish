@@ -73,6 +73,7 @@ namespace Catfish
 		{
 			int i = richTextBox1.GetLineFromCharIndex(richTextBox1.SelectionStart) + 1;
 			toolStripStatusLabel2.Text = "Строка: " + i.ToString();
+			toolStripStatusLabel4.ForeColor = Color.Red;
 		}
 		
 		void RichTextBox1KeyUp(object sender, KeyEventArgs e)
@@ -390,10 +391,12 @@ namespace Catfish
 					richTextBox1.SaveFile(saveFileDialog1.FileName, RichTextBoxStreamType.PlainText);
 					this.Text = saveFileDialog1.FileName;
 					checkedCoding("Кодировка: ASCII", true, false, false);
+					toolStripStatusLabel4.ForeColor = Color.Black;
 					MessageBox.Show("Файл успешно сохранён!");
 				}
 			}else{
 				richTextBox1.SaveFile(this.Text, RichTextBoxStreamType.PlainText);
+				toolStripStatusLabel4.ForeColor = Color.Black;
 				MessageBox.Show("Файл успешно сохранён!");
 			}
 			
@@ -414,12 +417,14 @@ namespace Catfish
 					sw.Close();
 					this.Text = saveFileDialog1.FileName;
 					checkedCoding("Кодировка: UTF-8", false, true, false);
+					toolStripStatusLabel4.ForeColor = Color.Black;
 					MessageBox.Show("Файл успешно сохранён!");
 				}
 			}else{
 				StreamWriter sw = new StreamWriter(this.Text, false, Encoding.UTF8);
 				sw.Write(richTextBox1.Text);
 				sw.Close();
+				toolStripStatusLabel4.ForeColor = Color.Black;
 				MessageBox.Show("Файл успешно сохранён!");
 			}
 		}
@@ -440,6 +445,7 @@ namespace Catfish
 					sw.Close();
 					this.Text = saveFileDialog1.FileName;
 					checkedCoding("Кодировка: UTF-8 without BOM", false, false, true);
+					toolStripStatusLabel4.ForeColor = Color.Black;
 					MessageBox.Show("Файл успешно сохранён!");
 				}
 			}else{
@@ -447,6 +453,7 @@ namespace Catfish
 				StreamWriter sw = new StreamWriter(saveFileDialog1.FileName, false, utf8wb);
 				sw.Write(richTextBox1.Text);
 				sw.Close();
+				toolStripStatusLabel4.ForeColor = Color.Black;
 				MessageBox.Show("Файл успешно сохранён!");
 			}
 		}
@@ -983,6 +990,19 @@ namespace Catfish
 		void ВыделитьВсёToolStripMenuItem1Click(object sender, EventArgs e)
 		{
 			richTextBox1.SelectAll();
+		}
+		
+		/* Создать файл */
+		void СоздатьФайлToolStripMenuItemClick(object sender, EventArgs e)
+		{
+			Editor fEditor = new Editor();
+			fEditor.Show();
+		}
+		
+		void ToolStripButton18Click(object sender, EventArgs e)
+		{
+			Editor fEditor = new Editor();
+			fEditor.Show();
 		}
 	}
 }
